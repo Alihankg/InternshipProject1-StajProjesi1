@@ -1,0 +1,32 @@
+Username:turkeyts
+Password:TechnoStudy123
+
+@FindBy(id="[id='mat-input-3']")
+ public WebElement Kullanıcıadı;
+
+@FindBy(id="[id='mat-input-4']")
+public WebElement Parola;
+
+@FindBy(linktext=" GİRİŞ YAP ")
+public WebElement  GİRİŞYAP ;
+
+@FindBy(css="[id='mat-input-3']")
+public WebElement ;
+
+@FindBy(css="[id='mat-input-3']")
+public WebElement ;
+
+@FindBy(css="[id='mat-input-3']")
+public WebElement ;
+
+@FindBy(css="[id='mat-input-3']")
+public WebElement ;
+
+@FindBy(css="[id='mat-input-3']")
+public WebElement ;
+
+@FindBy(css="[id='mat-input-3']")
+public WebElement ;
+
+
+
