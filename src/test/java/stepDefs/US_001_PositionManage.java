@@ -38,13 +38,13 @@ public class US_001_PositionManage {
         np.click(np.positionCate);
     }
 
-    String newPosition ="Evulation";
+
     @When("Create a New Position Category")
     public void addPosiCategory(){
 
 
         lp.click(lp.addButton);
-        lp.sendKeys(lp.nameInput, newPosition);
+        lp.sendKeys(lp.nameInput, "Evulation");
         lp.click(lp.saveButton);
     }
 
@@ -57,7 +57,7 @@ public class US_001_PositionManage {
     @When("User delete the {string}")
     public void userDeleteThe(String name) {
         lp.click(lp.searchBtn);
-        lp.sendKeys(lp.searchBtn,newPosition);
+        lp.sendKeys(lp.searchBtn,"Evulation");
         lp.click(lp.searchPicBtn);
         lp.wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//fuse-progress-bar/*"),0));
         lp.click(lp.deletePicBtn);

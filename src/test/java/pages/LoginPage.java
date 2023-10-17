@@ -27,6 +27,9 @@ public class LoginPage extends SeleniumShortcuts {
     @FindBy(xpath="//ms-text-field[@formcontrolname='name']//input")
     public WebElement nameInput;
 
+    @FindBy(xpath="(//*[@data-placeholder='Short Name'])[2]")
+    public WebElement shrtName;
+
     @FindBy(xpath="//ms-save-button/button")
     public WebElement saveButton;
 
@@ -42,11 +45,17 @@ public class LoginPage extends SeleniumShortcuts {
     @FindBy(xpath="//ms-search-button//button")
     public WebElement searchPicBtn;
 
-    @FindBy(xpath="(//ms-delete-button//button)[1]")
+    @FindBy(xpath="//ms-delete-button//button")
     public WebElement deletePicBtn;
 
     @FindBy(xpath="//button[@type='submit']")
     public WebElement deleteBtn;
+
+    @FindBy(xpath="//button[@class='mat-mdc-tooltip-trigger mdc-icon-button mat-mdc-icon-button mat-accent mat-mdc-button-base ng-star-inserted']")
+    public WebElement editPicBtn;
+
+    @FindBy(xpath = "(//div[@class='mdc-switch__icons ng-star-inserted'])[2]")
+    public WebElement swtchActivty;
 
 
 }

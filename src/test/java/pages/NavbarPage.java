@@ -45,4 +45,10 @@ public class NavbarPage extends SeleniumShortcuts {
     @FindBy(linkText = "Position Categories")
     public WebElement positionCate;
 
+    @FindBy(xpath = "//a[@href='/employee-position']")
+    public WebElement position;
+
+
+
+
 }
