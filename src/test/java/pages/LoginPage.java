@@ -11,12 +11,15 @@ public class LoginPage {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
-    @FindBy(id="[id='mat-input-3']")
+    @FindBy(css="input[formcontrolname='username']")
     public WebElement username;
 
-    @FindBy(id="[id='mat-input-4']")
+    @FindBy(css="input[formcontrolname='password']")
     public WebElement password;
 
-    @FindBy(linkText="GİRİŞ YAP")
+    @FindBy(css="button[aria-label='LOGIN']")
     public WebElement login;
+
+    @FindBy(css="span[class='mat-mdc-tooltip-trigger logo-text']")
+    public WebElement txtTechnoStudy;
 }
