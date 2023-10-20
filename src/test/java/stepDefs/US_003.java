@@ -1,18 +1,15 @@
 package stepDefs;
 
 import drivers.Driver;
-import drivers.MyFunc;
+import helpers.WaitHelpers;
 import helpers.SeleniumShortcuts;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.LoginPage;
 import pages.NavbarPage;
 
-public class documenttypes {
+public class US_003 {
 
     SeleniumShortcuts ss = new SeleniumShortcuts();
     NavbarPage np = new NavbarPage();
@@ -54,7 +51,7 @@ public class documenttypes {
 
     @Then("name should be corrected later")
     public void nameshouldbecorrectedlater() {
-        MyFunc.Bekle(2);
+        WaitHelpers.wait(2);
         ss.click(np.edit);
         ss.sendKeys(np.name, "Ahmet Yılmaz");
         ss.click(np.save);
@@ -62,7 +59,7 @@ public class documenttypes {
 
     @Then("contact should then be able to be deleted")
     public void contactShouldThenBeAbleToBeDeleted() {
-        MyFunc.Bekle(2);
+        WaitHelpers.wait(2);
         ss.click(np.delete);
         ss.click(np.deleteConfirm);
     }

@@ -2,12 +2,11 @@ package stepDefs;
 
 import io.cucumber.java.en.*;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.LoginPage;
 import pages.NavbarPage;
 
-public class US_005_PositionAdd {
+public class US_005 {
 
     LoginPage lp=new LoginPage();
     NavbarPage np=new NavbarPage();

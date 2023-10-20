@@ -1,16 +1,14 @@
 package stepDefs;
 
-import drivers.Driver;
-import drivers.MyFunc;
+import helpers.WaitHelpers;
 import helpers.SeleniumShortcuts;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import pages.LoginPage;
 import pages.NavbarPage;
 
-public class AC_08 {
+public class US_008 {
     SeleniumShortcuts ss = new SeleniumShortcuts();
     NavbarPage np = new NavbarPage();
     private WebElement driver;
@@ -34,7 +32,7 @@ public class AC_08 {
 
     @Then("edit the name later")
     public void editTheNameLater() {
-        MyFunc.Bekle(2);
+        WaitHelpers.wait(2);
 
         WebElement nameElement = driver.findElement(By.name("osman"));
         nameElement.click();
@@ -47,7 +45,7 @@ public class AC_08 {
 
     @Then("delete the contact")
     public void deleteTheContact() {
-        MyFunc.Bekle(2);
+        WaitHelpers.wait(2);
         WebElement nameElement = driver.findElement(By.name("ali Yılmaz"));
         nameElement.click();
         nameElement.sendKeys("ali Yılmaz");

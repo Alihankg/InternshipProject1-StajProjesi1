@@ -1,8 +1,8 @@
-package drivers;
+package helpers;
 
-public class MyFunc {
+public class WaitHelpers {
 
-    public static void Bekle(int sn){
+    public static void wait(int sn){
 
         try {
             Thread.sleep(sn* 1000L);

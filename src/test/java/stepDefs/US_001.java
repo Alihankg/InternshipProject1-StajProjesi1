@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.LoginPage;
 import pages.NavbarPage;
 
-public class US_001_PositionManage {
+public class US_001 {
 
     LoginPage lp=new LoginPage();
     NavbarPage np=new NavbarPage();
