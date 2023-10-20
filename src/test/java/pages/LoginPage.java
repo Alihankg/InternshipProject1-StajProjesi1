@@ -11,15 +11,18 @@ public class LoginPage extends SeleniumShortcuts {
     public LoginPage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
-
-    @FindBy(xpath = "//input[@placeholder='Kullanıcı Adı']")
+  
+    @FindBy(css="input[formcontrolname='username']")
     public WebElement username;
 
-    @FindBy(xpath="//input[@placeholder='Parola']")
+    @FindBy(css="input[formcontrolname='password']")
     public WebElement password;
 
-    @FindBy(xpath = "//span[@class='mdc-button__label']")
+    @FindBy(css="button[aria-label='LOGIN']")
     public WebElement login;
+
+    @FindBy(css="span[class='mat-mdc-tooltip-trigger logo-text']")
+    public WebElement txtTechnoStudy;
 
     @FindBy(xpath="//ms-add-button[contains(@tooltip,'ADD')]//button")
     public WebElement addButton;
@@ -56,6 +59,4 @@ public class LoginPage extends SeleniumShortcuts {
 
     @FindBy(xpath = "(//div[@class='mdc-switch__icons ng-star-inserted'])[2]")
     public WebElement swtchActivty;
-
-
 }

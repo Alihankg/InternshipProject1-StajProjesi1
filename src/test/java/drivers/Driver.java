@@ -46,5 +46,6 @@ public class Driver{
             threadDriver.get().quit();
             threadDriver.set(null);
         }
+
     }
 }
