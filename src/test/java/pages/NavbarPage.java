@@ -59,6 +59,18 @@ public class NavbarPage extends SeleniumShortcuts {
 
     @FindBy(xpath = "//span[text()=' Delete ']/parent::button")
     public WebElement deleteConfirm;
+  
+    @FindBy(xpath = "//span[@class='nav-link-title ng-tns-c3380182179-15 ng-star-inserted']")
+    public WebElement humanResou;
+
+    @FindBy(xpath = "//span[@class='nav-link-title ng-tns-c3380182179-16 ng-star-inserted']")
+    public WebElement Setup;
+
+    @FindBy(linkText = "Position Categories")
+    public WebElement positionCate;
+
+    @FindBy(xpath = "//a[@href='/employee-position']")
+    public WebElement position;
 
 
 }
