@@ -1,11 +1,12 @@
 package pages;
 
 import drivers.Driver;
+import helpers.SeleniumShortcuts;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class NavbarPage {
+public class NavbarPage extends SeleniumShortcuts {
 
     public NavbarPage() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -34,5 +35,20 @@ public class NavbarPage {
 
     @FindBy(xpath="(//span[@class='mat-mdc-button-persistent-ripple mdc-icon-button__ripple'])[10]")
     public WebElement delete;
+
+    @FindBy(xpath = "//span[@class='nav-link-title ng-tns-c3380182179-15 ng-star-inserted']")
+    public WebElement humanResou;
+
+    @FindBy(xpath = "//span[@class='nav-link-title ng-tns-c3380182179-16 ng-star-inserted']")
+    public WebElement Setup;
+
+    @FindBy(linkText = "Position Categories")
+    public WebElement positionCate;
+
+    @FindBy(xpath = "//a[@href='/employee-position']")
+    public WebElement position;
+
+
+
 
 }
