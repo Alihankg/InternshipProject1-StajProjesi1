@@ -13,3 +13,4 @@ Feature: document types functionality
     When Create a Citizenship
     Then name should be corrected later
     Then contact should then be able to be deleted
+

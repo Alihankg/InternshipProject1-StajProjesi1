@@ -1,6 +1,7 @@
 package stepDefs;
 
 import drivers.Driver;
+import drivers.MyFunc;
 import helpers.SeleniumShortcuts;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.*;
@@ -53,11 +54,7 @@ public class documenttypes {
 
     @Then("name should be corrected later")
     public void nameshouldbecorrectedlater() {
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        MyFunc.Bekle(2);
         ss.click(np.edit);
         ss.sendKeys(np.name, "Ahmet Yılmaz");
         ss.click(np.save);
@@ -65,11 +62,7 @@ public class documenttypes {
 
     @Then("contact should then be able to be deleted")
     public void contactShouldThenBeAbleToBeDeleted() {
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        MyFunc.Bekle(2);
         ss.click(np.delete);
         ss.click(np.deleteConfirm);
     }

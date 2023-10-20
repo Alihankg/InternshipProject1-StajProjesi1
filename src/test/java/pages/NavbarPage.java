@@ -20,6 +20,15 @@ public class NavbarPage extends SeleniumShortcuts {
     @FindBy(css = "[class='nav-link-title ng-tns-c3380182179-7 ng-star-inserted']")
     public WebElement parameters;
 
+    @FindBy(xpath = "//span[@class='nav-link-title ng-tns-c3380182179-8 ng-star-inserted']")
+    public WebElement schoolsetup;
+
+    @FindBy(xpath = "(//span[@class='nav-link-title ng-star-inserted'])[16]")
+    public WebElement departments;
+
+    @FindBy(xpath = "//ms-text-field[@formcontrolname='code']//input")
+    public WebElement code;
+
     @FindBy(xpath = "(//span[@class='nav-link-title ng-star-inserted'])[10]")
     public WebElement documentTypes;
 
@@ -44,6 +53,9 @@ public class NavbarPage extends SeleniumShortcuts {
 
     @FindBy(xpath = "(//span[@class='mat-mdc-button-touch-target'])[13]")
     public WebElement delete;
+
+    @FindBy(xpath = "(//ms-delete-button[@class='ng-star-inserted'])")
+    public WebElement deletes;
 
     @FindBy(xpath = "//span[text()=' Delete ']/parent::button")
     public WebElement deleteConfirm;
