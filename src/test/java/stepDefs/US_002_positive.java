@@ -1,5 +1,6 @@
 package stepDefs;
 
+import drivers.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -8,10 +9,12 @@ import io.cucumber.java.en.When;
 public class US_002_positive {
     @Given("a user logs into the system as an admin")
     public void aUserLogsIntoTheSystemAsAnAdmin() {
+        Driver.getDriver().get("https://test.mersys.io/");
     }
 
     @Then("the user should be logged in")
     public void theUserShouldBeLoggedIn() {
+
         
     }
 
