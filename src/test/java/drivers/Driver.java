@@ -36,12 +36,7 @@ public class Driver{
     }
 
     public static void quitDriver() {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
+        threadDriver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         if (threadDriver.get()!=null) {
             threadDriver.get().quit();
             threadDriver.set(null);
