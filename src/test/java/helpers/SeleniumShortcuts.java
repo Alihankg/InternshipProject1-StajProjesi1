@@ -20,11 +20,11 @@ public class SeleniumShortcuts {
         element.click();
     }
 
-    public void sendKeys(WebElement element, String yazi){
+    public void sendKeys(WebElement element, String text){
         wait.until(ExpectedConditions.visibilityOf(element));
         scrollToElement(element);
         element.clear();
-        element.sendKeys(yazi);
+        element.sendKeys(text);
     }
 
     public void scrollToElement(WebElement element){

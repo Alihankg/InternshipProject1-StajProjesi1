@@ -5,11 +5,12 @@ import helpers.SeleniumShortcuts;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
 public class LoginPage extends SeleniumShortcuts {
 
     public LoginPage() {
-        PageFactory.initElements(Driver.getDriver(), this);
+        PageFactory.initElements(new AjaxElementLocatorFactory(Driver.getDriver(), 20), this);
     }
   
     @FindBy(css="input[formcontrolname='username']")
@@ -35,9 +36,6 @@ public class LoginPage extends SeleniumShortcuts {
 
     @FindBy(xpath="//ms-save-button/button")
     public WebElement saveButton;
-
-    @FindBy(css="span[class='mat-mdc-tooltip-trigger logo-text']")
-    public WebElement txtTechnoStudy;
 
     @FindBy(xpath="//div[contains(text(),'successfully')]")
     public WebElement successMessage;

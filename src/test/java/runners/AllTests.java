@@ -5,7 +5,10 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
         features = {"src/test/java/FeatureFiles"},
-        glue={"StepDefinitions"}
+        glue={"StepDefinitions"},
+        plugin = {"pretty",
+            "html:target/cucumber"
+        }
 )
 public class AllTests extends AbstractTestNGCucumberTests {
 }
