@@ -1,14 +1,12 @@
 package pages;
 
 import drivers.Driver;
-import helpers.SeleniumShortcuts;
-import org.openqa.selenium.By;
+import helpers.SeleniumHelper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class NavbarPage extends SeleniumShortcuts {
+public class NavbarPage extends SeleniumHelper {
 
     public NavbarPage() {
         PageFactory.initElements(Driver.getDriver(), this);

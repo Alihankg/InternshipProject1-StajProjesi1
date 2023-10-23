@@ -1,7 +1,7 @@
 package stepDefs;
 
 import helpers.WaitHelpers;
-import helpers.SeleniumShortcuts;
+import helpers.SeleniumHelper;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
@@ -9,23 +9,23 @@ import org.openqa.selenium.WebElement;
 import pages.NavbarPage;
 
 public class US_008 {
-    SeleniumShortcuts ss = new SeleniumShortcuts();
+    SeleniumHelper sh = new SeleniumHelper();
     NavbarPage np = new NavbarPage();
     private WebElement driver;
 
     @And("enter into document types")
     public void enterIntoDocumentTypes() {
-        ss.click(np.setup);
-        ss.click(np.schoolsetup);
-        ss.click(np.departments);
+        sh.click(np.setup);
+        sh.click(np.schoolsetup);
+        sh.click(np.departments);
     }
 
     @Then("Create Citizenship")
     public void createCitizenship() {
-        ss.click(np.button7);
-        ss.sendKeys(np.name, "osma");
-        ss.sendKeys(np.code, "2");
-        ss.click(np.save);
+        sh.click(np.button7);
+        sh.sendKeys(np.name, "osma");
+        sh.sendKeys(np.code, "2");
+        sh.click(np.save);
     }
 
 
@@ -49,7 +49,7 @@ public class US_008 {
         WebElement nameElement = driver.findElement(By.name("ali Yılmaz"));
         nameElement.click();
         nameElement.sendKeys("ali Yılmaz");
-        ss.click(np.deletes);
-        ss.click(np.deleteConfirm);
+        sh.click(np.deletes);
+        sh.click(np.deleteConfirm);
     }
 }

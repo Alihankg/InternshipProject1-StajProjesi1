@@ -2,7 +2,7 @@ package stepDefs;
 
 import drivers.Driver;
 import helpers.WaitHelpers;
-import helpers.SeleniumShortcuts;
+import helpers.SeleniumHelper;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
@@ -11,7 +11,7 @@ import pages.NavbarPage;
 
 public class US_003 {
 
-    SeleniumShortcuts ss = new SeleniumShortcuts();
+    SeleniumHelper sh = new SeleniumHelper();
     NavbarPage np = new NavbarPage();
     LoginPage lp = new LoginPage();
 
@@ -22,45 +22,45 @@ public class US_003 {
 
     @When("Enter username and password and click login button")
     public void enterUsernameAndPasswordAndClickLoginButton() {
-        ss.sendKeys(lp.username, "turkeyts");
-        ss.sendKeys(lp.password, "TechnoStudy123");
+        sh.sendKeys(lp.username, "turkeyts");
+        sh.sendKeys(lp.password, "TechnoStudy123");
     }
 
     @Then("User should login successfully")
     public void userShouldLoginSuccessfully() {
-        ss.click(lp.login);
-        ss.click(lp.txtTechnoStudy);
+        sh.click(lp.loginButton);
+        sh.click(lp.txtTechnoStudy);
     }
 
     @Then("go to document types")
     public void gotodocumenttypes() {
-        ss.click(np.setup);
-        ss.click(np.parameters);
-        ss.click(np.documentTypes);
+        sh.click(np.setup);
+        sh.click(np.parameters);
+        sh.click(np.documentTypes);
     }
 
     @When("Create a Citizenship")
     public void CreateaCitizenship() {
-        ss.click(np.button7);
-        ss.sendKeys(np.name, "ahmet");
-        ss.click(np.stage);
-        ss.click(np.button);
+        sh.click(np.button7);
+        sh.sendKeys(np.name, "ahmet");
+        sh.click(np.stage);
+        sh.click(np.button);
         new Actions(Driver.getDriver()).sendKeys(Keys.ESCAPE).build().perform();
-        ss.click(np.save);
+        sh.click(np.save);
     }
 
     @Then("name should be corrected later")
     public void nameshouldbecorrectedlater() {
         WaitHelpers.wait(2);
-        ss.click(np.edit);
-        ss.sendKeys(np.name, "Ahmet Yılmaz");
-        ss.click(np.save);
+        sh.click(np.edit);
+        sh.sendKeys(np.name, "Ahmet Yılmaz");
+        sh.click(np.save);
     }
 
     @Then("contact should then be able to be deleted")
     public void contactShouldThenBeAbleToBeDeleted() {
         WaitHelpers.wait(2);
-        ss.click(np.delete);
-        ss.click(np.deleteConfirm);
+        sh.click(np.delete);
+        sh.click(np.deleteConfirm);
     }
 }

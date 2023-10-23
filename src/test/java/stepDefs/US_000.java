@@ -1,7 +1,7 @@
 package stepDefs;
 
 import drivers.Driver;
-import helpers.SeleniumShortcuts;
+import helpers.SeleniumHelper;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -10,7 +10,7 @@ import pages.LoginPage;
 
 public class US_000 {
 
-    SeleniumShortcuts ss = new SeleniumShortcuts();
+    SeleniumHelper sh = new SeleniumHelper();
     LoginPage lp = new LoginPage();
     WebDriver driver = Driver.getDriver();
 
@@ -21,9 +21,14 @@ public class US_000 {
 
     @When("I enter the valid credentials")
     public void iEnterTheValidCredentials() {
+        String username = "turkeyts", password = "TechnoStudy123";
+        lp.enterUsername(username);
+        lp.enterPassword(password);
+        lp.clickLoginButton();
     }
 
     @Then("I should be logged in successfully")
     public void iShouldBeLoggedInSuccessfully() {
+        lp.assertLogin();
     }
 }

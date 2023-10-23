@@ -21,12 +21,12 @@ public class US_001 {
     public void LoginStuff() {
         lp.sendKeys(lp.username, "turkeyts");
         lp.sendKeys(lp.password, "TechnoStudy123");
-        lp.click(lp.login);
+        lp.click(lp.loginButton);
     }
 
     @Then("User should login successfully")
     public void loginSuccessfully() {
-        lp.checkTextPresence(lp.txtTechnoStudy,"Techno Study");
+        lp.assertTextPresent(lp.txtTechnoStudy,"Techno Study");
 
     }
 
@@ -47,7 +47,7 @@ public class US_001 {
 
     @Then ("^Success message should be displayed$")
     public void succesMessage(){
-        lp.checkTextPresence(lp.successMessage,"successfully");
+        lp.assertTextPresent(lp.successMessage,"successfully");
     }
 
     @When("User delete the {string}")

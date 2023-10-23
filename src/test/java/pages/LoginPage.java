@@ -1,13 +1,13 @@
 package pages;
 
 import drivers.Driver;
-import helpers.SeleniumShortcuts;
+import helpers.SeleniumHelper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
-public class LoginPage extends SeleniumShortcuts {
+public class LoginPage extends SeleniumHelper {
 
     public LoginPage() {
         PageFactory.initElements(new AjaxElementLocatorFactory(Driver.getDriver(), 20), this);
@@ -20,7 +20,10 @@ public class LoginPage extends SeleniumShortcuts {
     public WebElement password;
 
     @FindBy(css="button[aria-label='LOGIN']")
-    public WebElement login;
+    public WebElement loginButton;
+
+    @FindBy(css="span[_ngcontent-ng-c1814038856]")
+    public WebElement dashboardText;
 
     @FindBy(css="span[class='mat-mdc-tooltip-trigger logo-text']")
     public WebElement txtTechnoStudy;
@@ -57,4 +60,20 @@ public class LoginPage extends SeleniumShortcuts {
 
     @FindBy(xpath = "(//div[@class='mdc-switch__icons ng-star-inserted'])[2]")
     public WebElement swtchActivty;
+
+    public void enterUsername(String username){
+        sendKeys(this.username, username);
+    }
+
+    public void enterPassword(String password){
+        sendKeys(this.password, password);
+    }
+
+    public void clickLoginButton(){
+        click(this.loginButton);
+    }
+
+    public void assertLogin(){
+        assertElementPresent(dashboardText, "Login failed.");
+    }
 }
