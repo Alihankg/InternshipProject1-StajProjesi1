@@ -35,6 +35,15 @@ public class LoginPage extends SeleniumShortcuts {
     @FindBy(xpath="//ms-search-button//button")
     public WebElement searchButton;
 
+    @FindBy(linkText = "Human Resources")
+    public WebElement HumanResources;
+
+    @FindBy(css = "[class='nav-link-title ng-tns-c2089661534-16 ng-star-inserted']")
+    public WebElement HumanSetup;
+
+    @FindBy(css = "[class='nav-link ng-star-inserted active accent']")
+    public WebElement Attestations;
+
     public void deleteItem(String searchText) {
         sendKeys(searchInput, searchText);
         click(searchButton);
