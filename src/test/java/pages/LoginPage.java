@@ -53,6 +53,12 @@ public class LoginPage extends SeleniumShortcuts {
     @FindBy(xpath = "(//span[@class='mat-mdc-button-persistent-ripple mdc-button__ripple'])[4]")
     public WebElement AddSave;
 
+    @FindBy(xpath = "(//span[@class='mat-mdc-button-touch-target'])[12]")
+    public WebElement editDocumentation;
+
+    @FindBy(xpath = "(//span[@class='mat-mdc-button-touch-target'])[12]")
+    public WebElement KDelete;
+
     public void deleteItem(String searchText) {
         sendKeys(searchInput, searchText);
         click(searchButton);

@@ -5,9 +5,7 @@ Feature: Documentation Management
     Then the user should be logged in
 
     And the user should be able to add documentation
-    Then the documentation should be edited successfully
-    And the user should be able to delete documentation
-    Then the documentation should be deleted successfully
+    Then the user should be able to delete documentation
 
 
 

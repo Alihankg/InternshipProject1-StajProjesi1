@@ -38,19 +38,16 @@ public class US_002_positive {
 
     @And("the user should be able to edit documentation")
     public void theUserShouldBeAbleToEditDocumentation() {
+        lp.sendKeys(lp.editDocumentation, "Proje2");
+        lp.AddSave.click();
+
         
     }
 
-
-    @Then("the documentation should be edited successfully")
-    public void theDocumentationShouldBeEditedSuccessfully() {
-    }
-
-    @And("the user should be able to delete documentation")
+    @Then("the user should be able to delete documentation")
     public void theUserShouldBeAbleToDeleteDocumentation() {
+        lp.click(lp.KDelete);
     }
 
-    @Then("the documentation should be deleted successfully")
-    public void theDocumentationShouldBeDeletedSuccessfully() {
-    }
+
 }
