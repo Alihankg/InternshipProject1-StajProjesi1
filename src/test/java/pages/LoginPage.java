@@ -44,6 +44,15 @@ public class LoginPage extends SeleniumShortcuts {
     @FindBy(css = "[class='nav-link ng-star-inserted active accent']")
     public WebElement Attestations;
 
+    @FindBy(xpath = "(//span[@class='mat-ripple mat-mdc-button-ripple'])[6]")
+    public WebElement toAdd;
+
+    @FindBy(css = "[formcontrolname='name']")
+    public WebElement AddName;
+
+    @FindBy(xpath = "(//span[@class='mat-mdc-button-persistent-ripple mdc-button__ripple'])[4]")
+    public WebElement AddSave;
+
     public void deleteItem(String searchText) {
         sendKeys(searchInput, searchText);
         click(searchButton);

@@ -29,6 +29,9 @@ public class US_002_positive {
         lp.click(lp.HumanResources);
         lp.click(lp.HumanSetup);
         lp.click(lp.Attestations);
+        lp.click(lp.toAdd);
+        lp.sendKeys(lp.AddName, "Proje1");
+        lp.AddSave.click();
         
     }
 
