@@ -17,12 +17,12 @@ public class US_001 {
         Driver.getDriver().get("https://test.mersys.io/");
     }
 
-    @When("Enter username and password and click login button")
-    public void LoginStuff() {
-        lp.sendKeys(lp.username, "turkeyts");
-        lp.sendKeys(lp.password, "TechnoStudy123");
-        lp.click(lp.loginButton);
-    }
+//    @When("Enter username and password and click login button")
+//    public void LoginStuff() {
+//        lp.sendKeys(lp.username, "turkeyts");
+//        lp.sendKeys(lp.password, "TechnoStudy123");
+//        lp.click(lp.loginButton);
+//    }
 
     @Then("User should login successfully")
     public void loginSuccessfully() {

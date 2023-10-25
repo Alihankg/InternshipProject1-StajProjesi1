@@ -5,4 +5,5 @@ Feature: Login Functionality
   Scenario: User logs in to the system as the admin
     Given I am on the login page
     When I enter the valid credentials
+    And I click the login button
     Then I should be logged in successfully

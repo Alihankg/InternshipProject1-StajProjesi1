@@ -1,7 +1,7 @@
 package stepDefs;
 
 import drivers.Driver;
-import helpers.SeleniumHelper;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -9,8 +9,6 @@ import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
 
 public class US_000 {
-
-    SeleniumHelper sh = new SeleniumHelper();
     LoginPage lp = new LoginPage();
     WebDriver driver = Driver.getDriver();
 
@@ -24,6 +22,10 @@ public class US_000 {
         String username = "turkeyts", password = "TechnoStudy123";
         lp.enterUsername(username);
         lp.enterPassword(password);
+    }
+
+    @And("I click the login button")
+    public void iClickTheLoginButton() {
         lp.clickLoginButton();
     }
 
@@ -31,4 +33,5 @@ public class US_000 {
     public void iShouldBeLoggedInSuccessfully() {
         lp.assertLogin();
     }
+
 }
