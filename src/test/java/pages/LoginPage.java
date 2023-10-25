@@ -2,9 +2,12 @@ package pages;
 
 import drivers.Driver;
 import helpers.SeleniumHelper;
+import org.openqa.selenium.By;
+import helpers.SeleniumHelper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
 public class LoginPage extends SeleniumHelper {
@@ -12,7 +15,7 @@ public class LoginPage extends SeleniumHelper {
     public LoginPage() {
         PageFactory.initElements(new AjaxElementLocatorFactory(Driver.getDriver(), 20), this);
     }
-  
+
     @FindBy(css="input[formcontrolname='username']")
     public WebElement username;
 
@@ -75,5 +78,47 @@ public class LoginPage extends SeleniumHelper {
 
     public void assertLogin(){
         assertElementPresent(dashboardText, "Login failed.");
+    }
+    @FindBy(xpath="(//ms-delete-button//button)[1]")
+    public WebElement deleteImageBtn;
+
+    @FindBy(xpath="//mat-form-field//input[@data-placeholder='Name']")
+    public WebElement searchInput;
+    @FindBy(xpath="//button[@type='submit']")
+    public WebElement deleteDialogBtn;
+    @FindBy(xpath="//ms-search-button//button")
+    public WebElement searchButton;
+
+    @FindBy(linkText = "Human Resources")
+    public WebElement HumanResources;
+
+    @FindBy(css = "[class='nav-link-title ng-tns-c2089661534-16 ng-star-inserted']")
+    public WebElement HumanSetup;
+
+    @FindBy(css = "[class='nav-link ng-star-inserted active accent']")
+    public WebElement Attestations;
+
+    @FindBy(xpath = "(//span[@class='mat-ripple mat-mdc-button-ripple'])[6]")
+    public WebElement toAdd;
+
+    @FindBy(css = "[formcontrolname='name']")
+    public WebElement AddName;
+
+    @FindBy(xpath = "(//span[@class='mat-mdc-button-persistent-ripple mdc-button__ripple'])[4]")
+    public WebElement AddSave;
+
+    @FindBy(xpath = "(//span[@class='mat-mdc-button-touch-target'])[12]")
+    public WebElement editDocumentation;
+
+    @FindBy(xpath = "(//span[@class='mat-mdc-button-touch-target'])[12]")
+    public WebElement KDelete;
+
+    public void deleteItem(String searchText) {
+        sendKeys(searchInput, searchText);
+        click(searchButton);
+        wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//fuse-progress-bar/*"),0));
+
+        click(deleteImageBtn);
+        click(deleteDialogBtn);
     }
 }
