@@ -1,34 +1,16 @@
 package stepDefs;
 
-import drivers.Driver;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.DefaultPage;
 import pages.LoginPage;
 import pages.NavbarPage;
 
 public class US_001 {
 
-    LoginPage lp=new LoginPage();
+    DefaultPage lp=new DefaultPage();
     NavbarPage np=new NavbarPage();
-
-    @Given("Navigate to Campus")
-    public void navigateToCampus() {
-        Driver.getDriver().get("https://test.mersys.io/");
-    }
-
-//    @When("Enter username and password and click login button")
-//    public void LoginStuff() {
-//        lp.sendKeys(lp.username, "turkeyts");
-//        lp.sendKeys(lp.password, "TechnoStudy123");
-//        lp.click(lp.loginButton);
-//    }
-
-    @Then("User should login successfully")
-    public void loginSuccessfully() {
-        lp.assertTextPresent(lp.txtTechnoStudy,"Techno Study");
-
-    }
 
     @And("Navigate to Position Categories")
     public void createCategori(){

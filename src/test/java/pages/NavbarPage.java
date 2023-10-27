@@ -1,7 +1,7 @@
 package pages;
 
-import drivers.Driver;
-import helpers.SeleniumHelper;
+import managers.WebDriverManager;
+import helpers.selenium.SeleniumHelper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 public class NavbarPage extends SeleniumHelper {
 
     public NavbarPage() {
-        PageFactory.initElements(Driver.getDriver(), this);
+        PageFactory.initElements(WebDriverManager.getDriver(), this);
     }
 
     @FindBy(css = "[class='nav-link-title ng-tns-c3380182179-6 ng-star-inserted']")

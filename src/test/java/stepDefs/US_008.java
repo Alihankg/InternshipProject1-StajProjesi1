@@ -1,7 +1,7 @@
 package stepDefs;
 
-import helpers.WaitHelpers;
-import helpers.SeleniumHelper;
+import helpers.selenium.WaitHelpers;
+import helpers.selenium.SeleniumHelper;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;

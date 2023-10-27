@@ -1,6 +1,6 @@
-package helpers;
+package helpers.selenium;
 
-import drivers.Driver;
+import managers.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,8 +11,8 @@ import java.time.Duration;
 
 public class SeleniumHelper {
 
-    public WebDriverWait wait=new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(20));
-    private static final WebDriver driver = Driver.getDriver();
+    public WebDriverWait wait=new WebDriverWait(WebDriverManager.getDriver(), Duration.ofSeconds(20));
+    private static final WebDriver driver = WebDriverManager.getDriver();
 
     public void click(WebElement element){
         wait.until(ExpectedConditions.elementToBeClickable(element));
@@ -28,7 +28,7 @@ public class SeleniumHelper {
     }
 
     public void scrollToElement(WebElement element){
-        JavascriptExecutor js=(JavascriptExecutor)Driver.getDriver();
+        JavascriptExecutor js=(JavascriptExecutor) WebDriverManager.getDriver();
         js.executeScript("arguments[0].scrollIntoView();", element);
     }
 

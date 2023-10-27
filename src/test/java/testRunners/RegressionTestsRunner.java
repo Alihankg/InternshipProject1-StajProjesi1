@@ -1,4 +1,4 @@
-package runners;
+package testRunners;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
@@ -8,5 +8,5 @@ import io.cucumber.testng.CucumberOptions;
         features = {"src/test/java/features"},
         glue={"stepDefs"}
 )
-public class RegressionTests extends AbstractTestNGCucumberTests {
+public class RegressionTestsRunner extends AbstractTestNGCucumberTests {
 }

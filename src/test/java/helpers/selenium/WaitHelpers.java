@@ -1,4 +1,4 @@
-package helpers;
+package helpers.selenium;
 
 public class WaitHelpers {
 

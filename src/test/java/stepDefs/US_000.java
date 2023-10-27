@@ -1,25 +1,34 @@
 package stepDefs;
 
-import drivers.Driver;
+import helpers.cucumber.TestContext;
+import managers.WebDriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import managers.FileReaderManager;
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
 
 public class US_000 {
-    LoginPage lp = new LoginPage();
-    WebDriver driver = Driver.getDriver();
+    WebDriver driver = WebDriverManager.getDriver();
+    FileReaderManager fileReaderManager = new FileReaderManager();
+    TestContext testContext;
+    LoginPage lp;
+
+    public US_000(TestContext context) {
+        testContext = context;
+        lp = testContext.getPageObjectManager().getLoginPage();
+    }
 
     @Given("I am on the login page")
     public void iAmOnTheLoginPage() {
-        driver.get("https://test.mersys.io/");
+        driver.get(fileReaderManager.getConfigReader().getApplicationURL());
     }
 
     @When("I enter the valid credentials")
     public void iEnterTheValidCredentials() {
-        String username = "turkeyts", password = "TechnoStudy123";
+        String username = fileReaderManager.getConfigReader().getAdminUsername(), password = fileReaderManager.getConfigReader().getAdminPassword();
         lp.enterUsername(username);
         lp.enterPassword(password);
     }
