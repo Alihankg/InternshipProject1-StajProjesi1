@@ -1,6 +1,8 @@
 package managers;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.Optional;
+
 import java.time.Duration;
 import java.util.Locale;
 
@@ -10,11 +12,20 @@ public class WebDriverManager {
     private static final FileReaderManager fileReaderManager = new FileReaderManager();
     private static final ThreadLocal<String> threadBrowserName=new ThreadLocal<>();
 
-    public static WebDriver getDriver() {
+    public static WebDriver getDriver(@Optional() String browserName) {
+        // Initialization
         Locale.setDefault(new Locale("EN"));
         System.setProperty("user.language", "EN");
 
-        threadBrowserName.set(fileReaderManager.getConfigReader().getDefaultBrowser());
+        // Select Browser Type
+        String defaultBrowser = fileReaderManager.getConfigReader().getDefaultBrowser();
+        if (browserName != null){
+            threadBrowserName.set(browserName);
+        } else if (!defaultBrowser.equals("null")){
+            threadBrowserName.set(defaultBrowser);
+        } else {
+            threadBrowserName.set("chrome");
+        }
 
         if (threadDriver.get()==null) {
             switch (threadBrowserName.get()) {
@@ -28,6 +39,7 @@ public class WebDriverManager {
             }
         }
 
+        // Set Browser Settings
         Boolean windowMaximize = fileReaderManager.getConfigReader().getBrowserWindowSize();
         if (windowMaximize)
             threadDriver.get().manage().window().maximize();

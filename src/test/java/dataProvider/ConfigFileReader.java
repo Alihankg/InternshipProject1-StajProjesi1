@@ -52,16 +52,7 @@ public class ConfigFileReader {
     }
 
     public String getDefaultBrowser() {
-        String browserName = properties.getProperty("defaultBrowser");
-        if (browserName != null) return browserName;
-        else return "chrome";
-    }
-
-    public String getProperty(String propertyName) {
-        String property = properties.getProperty(propertyName);
-        if (property != null) return property;
-        else
-            throw new RuntimeException(String.format("%s not specified in the Configuration.properties file.", propertyName));
+        return properties.getProperty("defaultBrowser");
     }
 
     public Boolean getBrowserWindowSize() {
