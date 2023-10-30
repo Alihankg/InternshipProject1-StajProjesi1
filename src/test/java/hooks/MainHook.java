@@ -1,7 +1,7 @@
 package hooks;
 
 import helpers.cucumber.TestContext;
-import managers.WebDriverManager;
+import managers.DriverManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -21,6 +21,6 @@ public class MainHook {
 
     @After
     public void after(Scenario scenario){
-        WebDriverManager.quitDriver();
+        DriverManager.quitDriver();
     }
 }

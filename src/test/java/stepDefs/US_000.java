@@ -1,7 +1,7 @@
 package stepDefs;
 
 import helpers.cucumber.TestContext;
-import managers.WebDriverManager;
+import managers.DriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
 
 public class US_000 {
-    WebDriver driver = WebDriverManager.getDriver();
+    WebDriver driver = DriverManager.getDriver();
     FileReaderManager fileReaderManager = new FileReaderManager();
     TestContext testContext;
     LoginPage lp;

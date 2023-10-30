@@ -1,7 +1,7 @@
 package pages;
 
 import helpers.selenium.SeleniumHelper;
-import managers.WebDriverManager;
+import managers.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class DefaultPage extends SeleniumHelper {
 
     public DefaultPage() {
-        PageFactory.initElements(new AjaxElementLocatorFactory(WebDriverManager.getDriver(), 20), this);
+        PageFactory.initElements(new AjaxElementLocatorFactory(DriverManager.getDriver(), 20), this);
     }
 
     @FindBy(xpath="//ms-add-button[contains(@tooltip,'ADD')]//button")

@@ -1,6 +1,6 @@
 package stepDefs;
 
-import managers.WebDriverManager;
+import managers.DriverManager;
 import helpers.selenium.WaitHelpers;
 import helpers.selenium.SeleniumHelper;
 import io.cucumber.java.en.*;
@@ -28,7 +28,7 @@ public class US_003 {
         sh.sendKeys(np.name, "ahmet");
         sh.click(np.stage);
         sh.click(np.button);
-        new Actions(WebDriverManager.getDriver()).sendKeys(Keys.ESCAPE).build().perform();
+        new Actions(DriverManager.getDriver()).sendKeys(Keys.ESCAPE).build().perform();
         sh.click(np.save);
     }
 
