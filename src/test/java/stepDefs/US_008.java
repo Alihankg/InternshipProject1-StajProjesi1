@@ -1,6 +1,5 @@
 package stepDefs;
 
-import helpers.selenium.WaitHelpers;
 import helpers.selenium.SeleniumHelper;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -32,7 +31,7 @@ public class US_008 {
 
     @Then("edit the name later")
     public void editTheNameLater() {
-        WaitHelpers.wait(2);
+        sh.wait(2);
 
         WebElement nameElement = driver.findElement(By.name("osman"));
         nameElement.click();
@@ -45,7 +44,7 @@ public class US_008 {
 
     @Then("delete the contact")
     public void deleteTheContact() {
-        WaitHelpers.wait(2);
+        sh.wait(2);
         WebElement nameElement = driver.findElement(By.name("ali Yılmaz"));
         nameElement.click();
         nameElement.sendKeys("ali Yılmaz");

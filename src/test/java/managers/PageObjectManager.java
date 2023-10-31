@@ -1,6 +1,5 @@
 package managers;
 
-import org.openqa.selenium.WebDriver;
 import pages.DefaultPage;
 import pages.LoginPage;
 import pages.NavbarPage;

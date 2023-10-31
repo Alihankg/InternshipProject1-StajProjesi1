@@ -1,14 +1,15 @@
 package stepDefs;
 
-import io.cucumber.java.en.*;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.LoginPage;
+import pages.DefaultPage;
 import pages.NavbarPage;
 
 public class US_005 {
 
-    LoginPage lp=new LoginPage();
+    DefaultPage lp=new DefaultPage();
     NavbarPage np=new NavbarPage();
     @And("Navigate to Positions")
     public void navigateToPositions() {

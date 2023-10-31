@@ -1,17 +1,9 @@
 package pages;
 
-import managers.DriverManager;
-import helpers.selenium.SeleniumHelper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
-public class LoginPage extends SeleniumHelper {
-
-    public LoginPage() {
-        PageFactory.initElements(new AjaxElementLocatorFactory(DriverManager.getDriver(), 20), this);
-    }
+public class LoginPage extends PageObject {
 
     @FindBy(css="input[formcontrolname='username']")
     public WebElement username;

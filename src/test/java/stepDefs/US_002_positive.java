@@ -3,7 +3,6 @@ package stepDefs;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import pages.DefaultPage;
-import pages.LoginPage;
 
 public class US_002_positive {
 

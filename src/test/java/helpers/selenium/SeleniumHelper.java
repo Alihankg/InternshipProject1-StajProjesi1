@@ -1,49 +1,66 @@
 package helpers.selenium;
 
 import managers.DriverManager;
-import org.openqa.selenium.*;
+import managers.FileReaderManager;
+import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import java.time.Duration;
 
 public class SeleniumHelper {
 
-    public WebDriverWait wait=new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(20));
-    private static final WebDriver driver = DriverManager.getDriver();
+    protected final WebDriver driver;
+    public final WebDriverWait wait;
 
-    public void click(WebElement element){
+    public SeleniumHelper() {
+        this.driver = DriverManager.getDefaultDriver();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(FileReaderManager.getInstance().getConfigReader().getImplicitlyWait()));
+    }
+
+    public void click(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
         scrollToElement(element);
         element.click();
     }
 
-    public void sendKeys(WebElement element, String text){
+    public void sendKeys(WebElement element, String text) {
         wait.until(ExpectedConditions.visibilityOf(element));
         scrollToElement(element);
         element.clear();
         element.sendKeys(text);
     }
 
-    public void scrollToElement(WebElement element){
-        JavascriptExecutor js=(JavascriptExecutor) DriverManager.getDriver();
+    public void scrollToElement(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDefaultDriver();
         js.executeScript("arguments[0].scrollIntoView();", element);
     }
 
     // Assertions
-    public void assertTextPresent(WebElement element, String value){
-        wait.until(ExpectedConditions.textToBePresentInElement(element,value));
+    public void assertTextPresent(WebElement element, String value) {
+        wait.until(ExpectedConditions.textToBePresentInElement(element, value));
         Assert.assertTrue(element.getText().toLowerCase().contains(value.toLowerCase()));
         new Actions(driver).sendKeys(Keys.ESCAPE).build().perform();
     }
 
-    public static void assertElementPresent(WebElement element, String message) {
-        Assert.assertTrue(element.isDisplayed(), message);
+    public void assertElementPresent(WebElement element, String message) {
+        Assert.assertTrue(message, element.isDisplayed());
     }
 
-    public static void assertElementNotPresent(WebElement element, String message) {
-        Assert.assertFalse(element.isDisplayed(), message);
+    public void assertElementNotPresent(WebElement element, String message) {
+        Assert.assertFalse(message, element.isDisplayed());
+    }
+
+    public void wait(int second) {
+        try {
+            wait.wait(second);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

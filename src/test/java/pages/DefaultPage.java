@@ -1,19 +1,11 @@
 package pages;
 
-import helpers.selenium.SeleniumHelper;
-import managers.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class DefaultPage extends SeleniumHelper {
-
-    public DefaultPage() {
-        PageFactory.initElements(new AjaxElementLocatorFactory(DriverManager.getDriver(), 20), this);
-    }
+public class DefaultPage extends PageObject {
 
     @FindBy(xpath="//ms-add-button[contains(@tooltip,'ADD')]//button")
     public WebElement addButton;
