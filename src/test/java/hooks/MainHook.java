@@ -8,12 +8,7 @@ import managers.DriverManager;
 
 public class MainHook {
 
-    TestContext testContext = new TestContext();
-
-//    public MainHook(TestContext context) {
-//        testContext = context;
-//    }
-
+    TestContext testContext;
     public MainHook() {
     }
 

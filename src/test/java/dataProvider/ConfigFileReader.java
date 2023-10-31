@@ -8,10 +8,10 @@ import java.util.Properties;
 
 public class ConfigFileReader {
     private final Properties properties;
-    private final String propertyFilePath = "configs/Configuration.properties";
 
     public ConfigFileReader() {
         BufferedReader reader;
+        String propertyFilePath = "configs/Configuration.properties";
         try {
             reader = new BufferedReader(new FileReader(propertyFilePath));
             properties = new Properties();
