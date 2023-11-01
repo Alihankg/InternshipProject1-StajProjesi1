@@ -1,5 +1,6 @@
 package managers;
 
+import dataProvider.ConfigFileReader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 
@@ -11,7 +12,7 @@ public class DriverManager {
     private static final ThreadLocal<WebDriver> threadDriver=new ThreadLocal<>();
 
     public static WebDriver getDefaultDriver() {
-        return getDriver(FileReaderManager.getInstance().getConfigReader().getDefaultBrowser());
+        return getDriver(ConfigFileReader.getDefaultBrowser());
     }
 
     public static WebDriver getDriver(String browser) {
@@ -36,10 +37,10 @@ public class DriverManager {
     }
 
     private static void setBrowserSettings(){
-        boolean windowMaximize = FileReaderManager.getInstance().getConfigReader().getBrowserWindowSize();
+        boolean windowMaximize = ConfigFileReader.getBrowserWindowSize();
         if (windowMaximize)
             threadDriver.get().manage().window().maximize();
-        threadDriver.get().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(FileReaderManager.getInstance().getConfigReader().getImplicitlyWait()));
+        threadDriver.get().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(ConfigFileReader.getImplicitlyWait()));
     }
 
     public static void quitDriver() {

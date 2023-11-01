@@ -1,63 +1,53 @@
 package dataProvider;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigFileReader {
-    private final Properties properties;
+    private static final String PROPERTY_FILE = "src/test/java/configs/Configuration.properties";
+    private static final Properties properties = new Properties();
 
-    public ConfigFileReader() {
-        BufferedReader reader;
-        String propertyFilePath = "configs/Configuration.properties";
-        try {
-            reader = new BufferedReader(new FileReader(propertyFilePath));
-            properties = new Properties();
-            try {
-                properties.load(reader);
-                reader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Configuration.properties not found at " + propertyFilePath);
+    static {
+        try (FileInputStream input = new FileInputStream(new File(PROPERTY_FILE))) {
+            properties.load(input);
+        } catch (IOException e) {
+            throw new RuntimeException("Error loading Configuration.properties: " + e.getMessage());
         }
     }
 
-    public long getImplicitlyWait() {
-        String implicitlyWait = properties.getProperty("implicitlyWait");
-        if (implicitlyWait != null) return Long.parseLong(implicitlyWait);
-        else throw new RuntimeException("implicitlyWait not specified in the Configuration.properties file.");
+    public static String getProperty(String key) {
+        String value = properties.getProperty(key);
+        if (value != null && !value.isEmpty()) {
+            return value;
+        } else {
+            throw new RuntimeException(key + " not specified in the Configuration.properties file.");
+        }
     }
 
-    public String getApplicationURL() {
-        String url = properties.getProperty("url");
-        if (url != null) return url;
-        else throw new RuntimeException("url not specified in the Configuration.properties file.");
+    public static long getImplicitlyWait() {
+        return Long.parseLong(getProperty("implicitlyWait"));
     }
 
-    public String getAdminUsername() {
-        String adminUsername = properties.getProperty("adminUsername");
-        if (adminUsername != null) return adminUsername;
-        else throw new RuntimeException("adminUsername not specified in the Configuration.properties file.");
+    public static String getApplicationURL() {
+        return getProperty("url");
     }
 
-    public String getAdminPassword() {
-        String adminPassword = properties.getProperty("adminPassword");
-        if (adminPassword != null) return adminPassword;
-        else throw new RuntimeException("adminPassword not specified in the Configuration.properties file.");
+    public static String getAdminUsername() {
+        return getProperty("adminUsername");
     }
 
-    public String getDefaultBrowser() {
-        return properties.getProperty("defaultBrowser");
+    public static String getAdminPassword() {
+        return getProperty("adminPassword");
     }
 
-    public Boolean getBrowserWindowSize() {
-        String windowSize = properties.getProperty("windowMaximize");
-        if (windowSize != null) return Boolean.valueOf(windowSize);
-        return true;
+    public static String getDefaultBrowser() {
+        return getProperty("defaultBrowser");
+    }
+
+    public static boolean getBrowserWindowSize() {
+        return Boolean.parseBoolean(getProperty("windowMaximize"));
     }
 }

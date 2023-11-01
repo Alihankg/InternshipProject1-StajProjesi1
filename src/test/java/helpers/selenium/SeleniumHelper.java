@@ -1,7 +1,7 @@
 package helpers.selenium;
 
+import dataProvider.ConfigFileReader;
 import managers.DriverManager;
-import managers.FileReaderManager;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -20,7 +20,7 @@ public class SeleniumHelper {
 
     public SeleniumHelper() {
         this.driver = DriverManager.getDefaultDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(FileReaderManager.getInstance().getConfigReader().getImplicitlyWait()));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(ConfigFileReader.getImplicitlyWait()));
     }
 
     public void click(WebElement element) {
