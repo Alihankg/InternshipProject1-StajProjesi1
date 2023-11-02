@@ -1,17 +1,10 @@
 package pages;
 
-import helpers.selenium.SeleniumHelper;
-import managers.DriverManager;
+import dataProvider.ConfigFileReader;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 
-public class LoginPage extends SeleniumHelper {
-
-    public LoginPage() {
-        PageFactory.initElements(driver, this);
-    }
+public class LoginPage extends PageObject {
 
     @FindBy(css="input[formcontrolname='username']")
     public WebElement username;
@@ -25,12 +18,16 @@ public class LoginPage extends SeleniumHelper {
     @FindBy(css="span[_ngcontent-ng-c1814038856]")
     public WebElement dashboardText;
 
-    public void enterUsername(String username){
-        sendKeys(this.username, username);
+    public void navigateToLoginPage(){
+        navigateTo(ConfigFileReader.getApplicationURL());
     }
 
-    public void enterPassword(String password){
-        sendKeys(this.password, password);
+    public void enterUsername(){
+        sendKeys(this.username, ConfigFileReader.getAdminUsername());
+    }
+
+    public void enterPassword(){
+        sendKeys(this.password, ConfigFileReader.getAdminPassword());
     }
 
     public void clickLoginButton(){

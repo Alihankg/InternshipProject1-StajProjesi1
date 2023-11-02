@@ -5,22 +5,22 @@ import pages.LoginPage;
 import pages.NavbarPage;
 
 public class PageObjectManager {
-    private LoginPage loginPage;
-    private NavbarPage navbarPage;
-    private DefaultPage defaultPage;
+    private static LoginPage loginPage;
+    private static NavbarPage navbarPage;
+    private static DefaultPage defaultPage;
 
-    public PageObjectManager() {
+    private PageObjectManager() {
     }
 
-    public LoginPage getLoginPage(){
+    public static LoginPage getLoginPage(){
         return (loginPage == null) ? loginPage = new LoginPage() : loginPage;
     }
 
-    public NavbarPage getNavbarPage(){
+    public static NavbarPage getNavbarPage(){
         return (navbarPage == null) ? navbarPage = new NavbarPage() : navbarPage;
     }
 
-    public DefaultPage getDefaultPage(){
+    public static DefaultPage getDefaultPage(){
         return (defaultPage == null) ? defaultPage = new DefaultPage() : defaultPage;
     }
 }

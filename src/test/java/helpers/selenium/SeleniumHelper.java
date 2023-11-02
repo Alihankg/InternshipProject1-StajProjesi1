@@ -23,6 +23,10 @@ public class SeleniumHelper {
         wait = new WebDriverWait(driver, Duration.ofSeconds(ConfigFileReader.getImplicitlyWait()));
     }
 
+    public void navigateTo(String url){
+        driver.navigate().to(url);
+    }
+
     public void click(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
         scrollToElement(element);
@@ -53,6 +57,7 @@ public class SeleniumHelper {
     }
 
     public void assertElementNotPresent(WebElement element, String message) {
+
         Assert.assertFalse(message, element.isDisplayed());
     }
 

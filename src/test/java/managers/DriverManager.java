@@ -32,7 +32,7 @@ public class DriverManager {
     }
 
     private static void setLocalSettings(){
-        Locale.setDefault(new Locale("EN"));
+        Locale.setDefault(Locale.forLanguageTag("en-US"));
         System.setProperty("user.language", "EN");
     }
 
