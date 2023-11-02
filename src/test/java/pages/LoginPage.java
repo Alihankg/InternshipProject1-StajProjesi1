@@ -38,4 +38,14 @@ public class LoginPage extends PageObject {
         assertElementPresent(dashboardText, "Login failed.");
     }
 
+
+
+    @FindBy(id = "[id='mat-input-11']")
+    public WebElement KullaniciAdi;
+
+    @FindBy(id = "[id='mat-input-12']")
+    public WebElement Parola;
+
+    @FindBy(linkText = " GİRİŞ YAP ")
+    public WebElement GirisYap;
 }
