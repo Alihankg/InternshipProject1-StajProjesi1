@@ -50,7 +50,7 @@ public class NavbarPage extends PageObject {
 
     @FindBy(xpath = "//span[text()=' Delete ']/parent::button")
     public WebElement deleteConfirm;
-  
+
     @FindBy(xpath = "//span[@class='nav-link-title ng-tns-c3380182179-15 ng-star-inserted']")
     public WebElement humanResou;
 
@@ -62,6 +62,9 @@ public class NavbarPage extends PageObject {
 
     @FindBy(xpath = "//a[@href='/employee-position']")
     public WebElement position;
+
+    @FindBy(id = "[id='ms-table-1_id']")
+    public WebElement table;
 
 
 }
