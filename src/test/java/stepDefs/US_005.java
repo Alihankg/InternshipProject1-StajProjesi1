@@ -13,9 +13,9 @@ public class US_005 {
     NavbarPage np=new NavbarPage();
     @And("Navigate to Positions")
     public void navigateToPositions() {
-        np.click(np.humanResou);
-        np.click(np.Setup);
-        np.wait.until(ExpectedConditions.elementToBeClickable(np.positionCate));
+        np.click(np.humanResources);
+        np.click(np.hrSetup);
+        np.wait.until(ExpectedConditions.elementToBeClickable(np.positionCategories));
         np.click(np.position);
     }
     String positionName1 ="Company Develop";

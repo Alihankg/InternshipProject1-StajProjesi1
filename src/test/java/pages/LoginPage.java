@@ -22,12 +22,12 @@ public class LoginPage extends PageObject {
         navigateTo(ConfigFileReader.getApplicationURL());
     }
 
-    public void enterUsername(){
-        sendKeys(this.username, ConfigFileReader.getAdminUsername());
+    public void enterUsername(String username){
+        sendKeys(this.username, username);
     }
 
-    public void enterPassword(){
-        sendKeys(this.password, ConfigFileReader.getAdminPassword());
+    public void enterPassword(String password){
+        sendKeys(this.password, password);
     }
 
     public void clickLoginButton(){
@@ -37,15 +37,4 @@ public class LoginPage extends PageObject {
     public void assertLogin(){
         assertElementPresent(dashboardText, "Login failed.");
     }
-
-
-
-    @FindBy(id = "[id='mat-input-11']")
-    public WebElement KullaniciAdi;
-
-    @FindBy(id = "[id='mat-input-12']")
-    public WebElement Parola;
-
-    @FindBy(linkText = " GİRİŞ YAP ")
-    public WebElement GirisYap;
 }

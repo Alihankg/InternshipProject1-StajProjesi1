@@ -15,10 +15,10 @@ public class US_001 {
 
     @And("Navigate to Position Categories")
     public void createCategori(){
-        np.click(np.humanResou);
-        np.click(np.Setup);
-        np.wait.until(ExpectedConditions.elementToBeClickable(np.positionCate));
-        np.click(np.positionCate);
+        np.click(np.humanResources);
+        np.click(np.hrSetup);
+        np.wait.until(ExpectedConditions.elementToBeClickable(np.positionCategories));
+        np.click(np.positionCategories);
     }
 
     @When("Create a New Position Category")

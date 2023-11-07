@@ -5,6 +5,9 @@ import org.openqa.selenium.support.FindBy;
 
 public class NavbarPage extends PageObject {
 
+    private static final String subfolderSetupPath = "/following-sibling::div//span[text()='Setup']/parent::a";
+    private static final String placeholderFolderXpath = "//span[text()='Placeholder']/parent::a";
+
     @FindBy(css = "[class='nav-link-title ng-tns-c3380182179-6 ng-star-inserted']")
     public WebElement setup;
 
@@ -35,7 +38,6 @@ public class NavbarPage extends PageObject {
     @FindBy(xpath = "(//mat-option[@role='option'])[1]")
     public WebElement button;
 
-
     @FindBy(css = "[class='ng-fa-icon ng-star-inserted']")
     public WebElement save;
 
@@ -51,14 +53,14 @@ public class NavbarPage extends PageObject {
     @FindBy(xpath = "//span[text()=' Delete ']/parent::button")
     public WebElement deleteConfirm;
 
-    @FindBy(xpath = "//span[@class='nav-link-title ng-tns-c3380182179-15 ng-star-inserted']")
-    public WebElement humanResou;
+    @FindBy(xpath = placeholderFolderXpath)
+    public WebElement humanResources;
 
-    @FindBy(xpath = "//span[@class='nav-link-title ng-tns-c3380182179-16 ng-star-inserted']")
-    public WebElement Setup;
+    @FindBy(xpath = "")
+    public WebElement hrSetup;
 
     @FindBy(linkText = "Position Categories")
-    public WebElement positionCate;
+    public WebElement positionCategories;
 
     @FindBy(xpath = "//a[@href='/employee-position']")
     public WebElement position;

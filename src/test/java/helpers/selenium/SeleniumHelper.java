@@ -56,14 +56,9 @@ public class SeleniumHelper {
         Assert.assertTrue(message, element.isDisplayed());
     }
 
-    public void assertElementNotPresent(WebElement element, String message) {
-
-        Assert.assertFalse(message, element.isDisplayed());
-    }
-
     public void wait(int second) {
         try {
-            wait.wait(second);
+            wait.wait(second*1000L);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

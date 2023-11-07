@@ -10,9 +10,18 @@ import java.util.Locale;
 public class DriverManager {
 
     private static final ThreadLocal<WebDriver> threadDriver=new ThreadLocal<>();
+    private static final ThreadLocal<String> threadBrowser = new ThreadLocal<>();
+
+    static {
+        threadBrowser.set(ConfigFileReader.getDefaultBrowser());
+    }
 
     public static WebDriver getDefaultDriver() {
-        return getDriver(ConfigFileReader.getDefaultBrowser());
+        return getDriver(threadBrowser.get());
+    }
+
+    public static void setDefaultBrowser(String browser){
+        threadBrowser.set(browser);
     }
 
     public static WebDriver getDriver(String browser) {

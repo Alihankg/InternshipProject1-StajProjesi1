@@ -1,11 +1,13 @@
-Feature: Position Manage
+Feature: Position Categories Management
+  As an admin,
+  I would like to add, edit and delete the Position Categories under Human Resources Setings,
+  so that, thanks to the Position Categories Management, we can configure the human resources details more efficiently for the school management.
+
+  Background:
+    Given I am logged in as an admin in the dashboard
 
   Scenario: Login with valid username and password
 
-    Given I am on the login page
-    When I enter the valid credentials
-    And I click the login button
-    Then I should be logged in successfully
     And Navigate to Position Categories
 
     When Create a New Position Category

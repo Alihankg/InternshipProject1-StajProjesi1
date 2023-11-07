@@ -1,6 +1,6 @@
 package stepDefs;
 
-import helpers.cucumber.TestContext;
+import dataProvider.ConfigFileReader;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,11 +9,9 @@ import managers.PageObjectManager;
 import pages.LoginPage;
 
 public class US_000 {
-    TestContext testContext;
     LoginPage loginPage;
 
-    public US_000(TestContext context) {
-        testContext = context;
+    public US_000() {
         loginPage = PageObjectManager.getLoginPage();
     }
 
@@ -24,8 +22,10 @@ public class US_000 {
 
     @When("I enter the valid credentials")
     public void iEnterTheValidCredentials() {
-        loginPage.enterUsername();
-        loginPage.enterPassword();
+        String adminUsername = ConfigFileReader.getAdminUsername(),
+                adminPassword = ConfigFileReader.getAdminPassword();
+        loginPage.enterUsername(adminUsername);
+        loginPage.enterPassword(adminPassword);
     }
 
     @And("I click the login button")
@@ -38,4 +38,11 @@ public class US_000 {
         loginPage.assertLogin();
     }
 
+    @Given("I am logged in as an admin in the dashboard")
+    public void iAmLoggedInAsAnAdminInTheDashboard() {
+        iAmOnTheLoginPage();
+        iEnterTheValidCredentials();
+        iClickTheLoginButton();
+        iShouldBeLoggedInSuccessfully();
+    }
 }
