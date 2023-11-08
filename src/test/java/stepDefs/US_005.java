@@ -15,8 +15,7 @@ public class US_005 {
     public void navigateToPositions() {
         np.click(np.humanResources);
         np.click(np.hrSetup);
-        np.wait.until(ExpectedConditions.elementToBeClickable(np.positionCategories));
-        np.click(np.position);
+        np.click(np.positionCategories);
     }
     String positionName1 ="Company Develop";
     String posiShrtName ="CompDev";

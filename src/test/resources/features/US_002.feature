@@ -1,12 +1,8 @@
 Feature: Documentation Management
 
-  Scenario: User Management and Documentation Operations
-    Given a user logs into the system as an admin
-    Then the user should be logged in
+  Background:
+    Given I am logged in as an admin in the dashboard
 
+  Scenario: User Management and Documentation Operations
     And the user should be able to add documentation
     Then the user should be able to delete documentation
-
-
-
-

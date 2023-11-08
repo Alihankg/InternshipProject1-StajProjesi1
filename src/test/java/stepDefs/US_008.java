@@ -5,17 +5,11 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import pages.LoginPage;
 import pages.NavbarPage;
 
 public class US_008 {
     SeleniumHelper sh = new SeleniumHelper();
     NavbarPage np = new NavbarPage();
-
-    LoginPage lp = new LoginPage();
-    private WebElement driver;
 
     @Given("Navigate to Campus")
     public void navigateToCampus() {
@@ -54,9 +48,6 @@ public class US_008 {
         sh.click(np.edit);
         sh.sendKeys(np.name, "osman yusuf");
         sh.click(np.save);
-
-
-
     }
 
     @Then("delete the contact")
