@@ -35,6 +35,6 @@ public class LoginPage extends PageObject {
     }
 
     public void assertLogin(){
-        assertElementPresent(dashboardText, "Login failed.");
+        assertElementPresent(dashboardText);
     }
 }

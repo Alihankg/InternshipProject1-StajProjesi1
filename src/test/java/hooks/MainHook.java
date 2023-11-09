@@ -13,7 +13,7 @@ public class MainHook {
     }
 
     @After
-    public void after(Scenario scenario){
+    public void after(){
         DriverManager.quitDriver();
     }
 }

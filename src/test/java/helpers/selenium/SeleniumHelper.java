@@ -52,11 +52,11 @@ public class SeleniumHelper {
         new Actions(driver).sendKeys(Keys.ESCAPE).build().perform();
     }
 
-    public void assertElementPresent(WebElement element, String message) {
-        Assert.assertTrue(message, element.isDisplayed());
+    public void assertElementPresent(WebElement element) {
+        Assert.assertTrue("element isn't displayed", element.isDisplayed());
     }
 
-    public void wait(int second) {
+    public void threadWait(int second) {
         try {
             wait.wait(second*1000L);
         } catch (InterruptedException e) {

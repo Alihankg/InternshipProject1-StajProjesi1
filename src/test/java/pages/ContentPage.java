@@ -2,9 +2,13 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class ContentPage extends PageObject{
+
     @FindBy(xpath = "//ms-add-button//button")
     public WebElement add;
 
@@ -20,11 +24,23 @@ public class ContentPage extends PageObject{
     @FindBy(xpath = "//span[text()=' Delete ']/parent::button")
     public WebElement confirmDelete;
 
-    public WebElement dialogName = findInputByTextInDialog("Name");
+    @FindBy(xpath = "//ms-toaster-message//mat-panel-description/div")
+    public WebElement resultMessage;
 
-    public WebElement dialogShortName = findInputByTextInDialog("Short Name");
+    public WebElement dialogInputName(){
+        return findInputByTextInDialog("Name");
+    }
+
+    public WebElement dialogShortName(){
+        return findInputByTextInDialog("Short Name");
+    }
 
     private WebElement findInputByTextInDialog(String text){
         return driver.findElement(By.xpath(String.format("//ms-dialog-content//ms-text-field/input[@data-placeholder='%s']", text)));
+    }
+
+    //Assertions
+    public void assertMessageDisplayed(){
+        assertTextPresent(resultMessage, resultMessage.getText());
     }
 }

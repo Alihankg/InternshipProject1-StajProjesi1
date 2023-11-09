@@ -1,6 +1,7 @@
 package managers;
 
 import dataProvider.ConfigFileReader;
+import helpers.selenium.SeleniumHelper;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 
@@ -53,10 +54,10 @@ public class DriverManager {
     }
 
     public static void quitDriver() {
-        threadDriver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        threadDriver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         if (threadDriver.get()!=null) {
             threadDriver.get().quit();
-            threadDriver.set(null);
+            threadDriver.remove();
         }
     }
 }

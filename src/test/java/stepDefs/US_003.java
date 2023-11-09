@@ -34,7 +34,7 @@ public class US_003 {
 
     @Then("name should be corrected later")
     public void nameshouldbecorrectedlater() {
-        sh.wait(2);
+        sh.threadWait(2);
         sh.click(np.edit);
         sh.sendKeys(np.name, "Ahmet Yılmaz");
         sh.click(np.save);
@@ -42,7 +42,7 @@ public class US_003 {
 
     @Then("contact should then be able to be deleted")
     public void contactShouldThenBeAbleToBeDeleted() {
-        sh.wait(2);
+        sh.threadWait(2);
         sh.click(np.delete);
         sh.click(np.deleteConfirm);
     }

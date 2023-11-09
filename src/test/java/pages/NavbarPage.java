@@ -6,14 +6,26 @@ import org.openqa.selenium.support.FindBy;
 
 public class NavbarPage extends PageObject {
 
+    public WebElement parameters;
+    public WebElement schoolsetup;
+    public WebElement departments;
+    public WebElement humanResources;
+    public WebElement hrSetup;
+    public WebElement positionCategories;
+    public WebElement attestations;
+
+    public NavbarPage() {
+        parameters = findFolderByText("Parameters");
+        schoolsetup = findFolderByText("School Setup");
+        departments = findFolderByText("Departments");
+        humanResources = findFolderByText("Human Resources");
+        hrSetup = findSetupUnderFolder("Human Resources");
+        positionCategories = findFolderByText("Position Categories");
+        attestations = findFolderByText("Attestations");
+    }
+
     @FindBy(css = "[class='nav-link-title ng-tns-c3380182179-6 ng-star-inserted']")
     public WebElement setup;
-
-    public WebElement parameters = findFolderByText("Parameters");
-
-    public WebElement schoolsetup = findFolderByText("School Setup");
-
-    public WebElement departments = findFolderByText("Departments");
 
     @FindBy(xpath = "//ms-text-field[@formcontrolname='code']//input")
     public WebElement code;
@@ -48,24 +60,20 @@ public class NavbarPage extends PageObject {
     @FindBy(xpath = "//span[text()=' Delete ']/parent::button")
     public WebElement deleteConfirm;
 
-    public WebElement humanResources = findFolderByText("Human Resources");
-
-    public WebElement hrSetup = findSetupUnderFolder(humanResources);
-
-    public WebElement positionCategories = findFolderByText("Position Categories");
-
-    public WebElement attestations = findFolderByText("Attestations");
-
     @FindBy(id = "[id='ms-table-1_id']")
     public WebElement table;
 
     // Helpers
     public WebElement findFolderByText(String text){
-        String xpath = String.format("//span[text()='%s']/parent::a", text);
+        String xpath = getFolderXpath(text);
         return driver.findElement(By.xpath(xpath));
     }
 
-    public WebElement findSetupUnderFolder(WebElement folder){
-        return folder.findElement(By.xpath("/following-sibling::div//span[text()='Setup']/parent::a"));
+    public String getFolderXpath(String folder){
+        return String.format("//span[text()='%s']/parent::a", folder);
+    }
+
+    public WebElement findSetupUnderFolder(String text){
+        return driver.findElement(By.xpath(getFolderXpath(text)+"/following-sibling::div//span[text()='Setup']/parent::a"));
     }
 }

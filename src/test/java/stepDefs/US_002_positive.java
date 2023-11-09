@@ -18,23 +18,29 @@ public class US_002_positive extends SeleniumHelper {
     }
 
     @And("the user should be able to add documentation")
-    public void theUserShouldBeAbleToAddDocumentation() {
+    public void theUserShouldBeAbleToAddDocumentation() throws InterruptedException {
         click(navbarPage.humanResources);
         click(navbarPage.hrSetup);
         click(navbarPage.attestations);
         click(contentPage.add);
-        sendKeys(contentPage.dialogName, "Proje1");
+        Thread.sleep(2000);
+        sendKeys(contentPage.dialogInputName(), "Proje1");
         click(contentPage.saveButton);
     }
     @And("the user should be able to edit documentation")
-    public void theUserShouldBeAbleToEditDocumentation() {
+    public void theUserShouldBeAbleToEditDocumentation() throws InterruptedException {
+        Thread.sleep(2000);
         click(contentPage.edit);
-        sendKeys(contentPage.dialogName, "Proje2");
+        Thread.sleep(2000);
+        sendKeys(contentPage.dialogInputName(), "Proje2");
         click(contentPage.saveButton);
     }
     @Then("the user should be able to delete documentation")
-    public void theUserShouldBeAbleToDeleteDocumentation() {
+    public void theUserShouldBeAbleToDeleteDocumentation() throws InterruptedException {
+        Thread.sleep(2000);
         click(contentPage.delete);
+        Thread.sleep(2000);
         click(contentPage.confirmDelete);
+        Thread.sleep(2000);
     }
 }

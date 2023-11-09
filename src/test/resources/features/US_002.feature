@@ -5,4 +5,5 @@ Feature: Documentation Management
 
   Scenario: User Management and Documentation Operations
     And the user should be able to add documentation
+    And the user should be able to edit documentation
     Then the user should be able to delete documentation
