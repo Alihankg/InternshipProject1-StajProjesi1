@@ -9,9 +9,9 @@ public class US_001 {
 
     NavbarPage navbarPage;
     ContentPage contentPage;
-    private static final PageObjectManager pom = new PageObjectManager();
 
     public US_001() {
+        final PageObjectManager pom = new PageObjectManager();
         navbarPage = pom.getNavbarPage();
         contentPage = pom.getContentPage();
     }
