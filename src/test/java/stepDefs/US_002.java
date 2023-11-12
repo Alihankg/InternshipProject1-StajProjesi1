@@ -13,14 +13,14 @@ public class US_002 {
         click(contentPage.toastClose);
         contentPage.add();
         contentPage.waitUntilDialogDisplayed();
-        contentPage.fillDialogField("Name", "Attestation");
+        contentPage.fillDialogInput("Name", "Attestation");
         contentPage.saveAndConfirm();
     }
 
     @When("I update Attestation in Attestations")
     public void iUpdateAttestationInAttestations() {
         contentPage.edit();
-        contentPage.fillDialogField("Name", "Attestation 2");
+        contentPage.fillDialogInput("Name", "Attestation 2");
         contentPage.saveAndConfirm();
     }
 

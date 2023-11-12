@@ -2,8 +2,6 @@ package stepDefs;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import managers.PageObjectManager;
-import org.apache.poi.ss.formula.functions.Na;
 import pages.ContentPage;
 import pages.NavbarPage;
 public class US_001 {
@@ -19,14 +17,14 @@ public class US_001 {
     @When("I add Position Category in Position Categories")
     public void iAddPositionCategoryInPositionCategories(){
         contentPage.add();
-        contentPage.fillDialogField("Name", "Position Category");
+        contentPage.fillDialogInput("Name", "Position Category");
         contentPage.saveAndConfirm();
     }
 
     @When("I update Position Category in Position Categories")
     public void iUpdatePositionCategoryInPositionCategories() {
         contentPage.edit();
-        contentPage.fillDialogField("Name", "Position Category 2");
+        contentPage.fillDialogInput("Name", "Position Category 2");
         contentPage.saveAndConfirm();
     }
 

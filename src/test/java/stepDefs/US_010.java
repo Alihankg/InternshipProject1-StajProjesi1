@@ -9,10 +9,10 @@ public class US_010 {
     public void iAddGradeLevelInGradeLevels() {
         contentPage.sort();contentPage.sort();
         contentPage.add();
-        contentPage.fillDialogField("Name", "Alihan Name");
-        contentPage.fillDialogField("Short Name", "Alihan Short Name");
-        contentPage.fillDialogField("Order", "1");
-        contentPage.fillDialogField("Max Application Count", "10");
+        contentPage.fillDialogInput("Name", "Alihan Name");
+        contentPage.fillDialogInput("Short Name", "Alihan Short Name");
+        contentPage.fillDialogInput("Order", "1");
+        contentPage.fillDialogInput("Max Application Count", "10");
         contentPage.select("Next Grade", "violet _ i");
         contentPage.saveAndConfirm();
     }
@@ -20,7 +20,7 @@ public class US_010 {
     @When("I update Grade Level in Grade Levels")
     public void iUpdateGradeLevelInGradeLevels() {
         contentPage.edit();
-        contentPage.fillDialogField("Name", "Updated Alihan Name");
+        contentPage.fillDialogInput("Name", "Updated Alihan Name");
         contentPage.saveAndConfirm();
     }
 

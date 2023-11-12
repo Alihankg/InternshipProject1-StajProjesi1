@@ -9,14 +9,14 @@ public class US_012 {
     public void iAddNationalityInNationalities() {
         contentPage.sort();contentPage.sort();
         contentPage.add();
-        contentPage.fillDialogField("Name", "Alihan Name");
+        contentPage.fillDialogInput("Name", "Alihan Name");
         contentPage.saveAndConfirm();
     }
 
     @When("I update Nationality in Nationalities")
     public void iUpdateNationalityInNationalities() {
         contentPage.edit();
-        contentPage.fillDialogField("Name", "Update Alihan Name");
+        contentPage.fillDialogInput("Name", "Update Alihan Name");
         contentPage.saveAndConfirm();
     }
 

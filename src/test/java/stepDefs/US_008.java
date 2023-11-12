@@ -9,15 +9,15 @@ public class US_008 {
     public void iAddDepartmentInDeparments() {
         contentPage.sort();contentPage.sort();
         contentPage.add();
-        contentPage.fillDialogField("Name", "Alihan Name");
-        contentPage.fillDialogField("Code", "Alihan Code");
+        contentPage.fillDialogInput("Name", "Alihan Name");
+        contentPage.fillDialogInput("Code", "Alihan Code");
         contentPage.saveAndConfirm();
     }
 
     @When("I update Department in Departments")
     public void iUpdateDepartmentInDeparments() {
         contentPage.edit();
-        contentPage.fillDialogField("Name", "Updated Alihan Name");
+        contentPage.fillDialogInput("Name", "Updated Alihan Name");
         contentPage.saveAndConfirm();
     }
 

@@ -8,9 +8,9 @@ public class US_007 {
     @When("I add Location in Locations")
     public void iAddLocationInLocations() {
         contentPage.add();
-        contentPage.fillDialogField("Name", "Alihan Name");
-        contentPage.fillDialogField("Short Name", "Alihan Short Name");
-        contentPage.fillDialogField("Capacity", "10");
+        contentPage.fillDialogInput("Name", "Alihan Name");
+        contentPage.fillDialogInput("Short Name", "Alihan Short Name");
+        contentPage.fillDialogInput("Capacity", "10");
         contentPage.select("Location Type", "Laboratory");
         contentPage.saveAndConfirm();
     }
@@ -18,7 +18,7 @@ public class US_007 {
     @When("I update Location in Locations")
     public void iUpdateLocationInLocations() {
         contentPage.edit();
-        contentPage.fillDialogField("Name", "Updated Alihan Name");
+        contentPage.fillDialogInput("Name", "Updated Alihan Name");
         contentPage.saveAndConfirm();
     }
 

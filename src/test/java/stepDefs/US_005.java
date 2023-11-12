@@ -8,15 +8,15 @@ public class US_005 {
     @When("I add Position in Positions")
     public void iAddPositionInPositions() {
         contentPage.add();
-        contentPage.fillDialogField("Name", "Alihan Name");
-        contentPage.fillDialogField("Short Name", "Alihan Short Name");
+        contentPage.fillDialogInput("Name", "Alihan Name");
+        contentPage.fillDialogInput("Short Name", "Alihan Short Name");
         contentPage.saveAndConfirm();
     }
 
     @When("I update Position in Positions")
     public void iUpdatePositionInPositions() {
         contentPage.edit();
-        contentPage.fillDialogField("Name", "Updated Alihan Name");
+        contentPage.fillDialogInput("Name", "Updated Alihan Name");
         contentPage.saveAndConfirm();
     }
 

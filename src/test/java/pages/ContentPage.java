@@ -2,7 +2,6 @@ package pages;
 
 import static helpers.selenium.SeleniumHelper.*;
 
-import helpers.StringHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,7 +25,7 @@ public class ContentPage extends PageObject{
     @FindBy(xpath = "//ms-delete-button//button")
     public WebElement delete;
 
-    @FindBy(xpath = "//ms-save-button/button")
+    @FindBy(xpath = "//ms-save-button//span[text()='Save & Close']/ancestor::button")
     public WebElement saveButton;
 
     @FindBy(xpath = "//ms-search-button//button")
@@ -97,17 +96,13 @@ public class ContentPage extends PageObject{
         }
     }
 
-    public void fillDialogField(String fieldName, String text){
+    public void fillDialogInput(String fieldName, String text){
+        //mat-label[text()='Description']/ancestor::span/preceding-sibling::*
+        //ms-dialog-content//textarea[@formcontrolname='%s']
         waitUntilDialogDisplayed();
-        String xpath = null;
-        switch (fieldName){
-            case "Name", "Short Name", "Code", "Capacity", "IBAN", "Integration Code", "Order", "Max Application Count" -> {
-                xpath = "//ms-dialog-content//input[@data-placeholder='%s']".formatted(fieldName);
-                if (fieldName.equals("Name"))
-                    previousText = text;
-            } case "Description" -> xpath = "//ms-dialog-content//textarea[@formcontrolname='%s']".formatted(StringHelper.textToCamelCase(fieldName));
-        }
-        WebElement element = driver.findElement(By.xpath(xpath));
+        if (fieldName.equals("Name"))
+            previousText = text;
+        WebElement element = driver.findElement(By.xpath("//ms-dialog-content//input[@data-placeholder='%s']"));
         sendKeys(element, text);
     }
 
