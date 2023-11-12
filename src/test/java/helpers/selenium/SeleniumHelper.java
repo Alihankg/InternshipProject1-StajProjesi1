@@ -42,6 +42,10 @@ public class SeleniumHelper {
         js.executeScript("arguments[0].scrollIntoView();", element);
     }
 
+    public static void escape(){
+       new Actions(driver).sendKeys(Keys.ESCAPE).build().perform();
+    }
+
     // Assertions
     public static void assertElementPresent(WebElement element) {
         Assert.assertTrue("element isn't displayed", element.isDisplayed());
@@ -50,15 +54,20 @@ public class SeleniumHelper {
     public static void assertContainsText(WebElement element, String value) {
         wait.until(ExpectedConditions.textToBePresentInElement(element, value));
         Assert.assertTrue(element.getText().toLowerCase().contains(value.toLowerCase()));
-        new Actions(driver).sendKeys(Keys.ESCAPE).build().perform();
+        escape();
     }
 
     // Wait
-    public static void waitUntilElementDisplayed(WebElement element){
+    public static void waitUntilElementIsDisplayed(WebElement element){
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     public static void waitUntilElementIsClickable(WebElement element){
         wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    public static void waitUntilElementIsDisplayedAndClickable(WebElement element){
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
 }
