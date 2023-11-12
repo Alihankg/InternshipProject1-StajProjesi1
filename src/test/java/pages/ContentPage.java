@@ -6,7 +6,6 @@ import helpers.StringHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 import java.util.Map;
@@ -76,7 +75,12 @@ public class ContentPage extends PageObject{
 
     // Form
     private WebElement getSelectField(String name){
-        return driver.findElement(By.xpath("//ms-dialog-content//span[text()='%s']/ancestor::mat-select".formatted(name)));
+        String xpath = null;
+        switch (name){
+            case "Stage" -> xpath = "//ms-dialog-content//span[text()='%s']/ancestor::mat-select".formatted(name);
+            case "Field Type", "Location Type", "Currency", "Next Grade" -> xpath = "//ms-dialog-content//span[text()='%s']/ancestor::*/preceding-sibling::mat-select".formatted(name);
+        }
+        return driver.findElement(By.xpath(xpath));
     }
 
     public void select(String selectName, String... selected){
@@ -91,20 +95,19 @@ public class ContentPage extends PageObject{
                 }
             }
         }
-        escape();
     }
 
     public void fillDialogField(String fieldName, String text){
-        WebElement element = null;
+        waitUntilDialogDisplayed();
+        String xpath = null;
         switch (fieldName){
-            case "Name", "Short Name", "Code" -> {
-                element = driver.findElement(By.xpath("//ms-dialog-content//ms-text-field/input[@data-placeholder='%s']".formatted(fieldName)));
-                previousText = text;
-            }
-            case "Description" -> {
-                element = driver.findElement(By.xpath("//ms-dialog-content//textarea[@formcontrolname='%s']".formatted(StringHelper.textToCamelCase(fieldName))));
-            }
+            case "Name", "Short Name", "Code", "Capacity", "IBAN", "Integration Code", "Order", "Max Application Count" -> {
+                xpath = "//ms-dialog-content//input[@data-placeholder='%s']".formatted(fieldName);
+                if (fieldName.equals("Name"))
+                    previousText = text;
+            } case "Description" -> xpath = "//ms-dialog-content//textarea[@formcontrolname='%s']".formatted(StringHelper.textToCamelCase(fieldName));
         }
+        WebElement element = driver.findElement(By.xpath(xpath));
         sendKeys(element, text);
     }
 
@@ -116,7 +119,7 @@ public class ContentPage extends PageObject{
         click(searchButton);
     }
 
-    private void fillSearchInput(String inputName, String text){
+    public void fillSearchInput(String inputName, String text){
         WebElement input = driver.findElement(By.xpath(String.format("//ms-browse-search//ms-text-field/input[@data-placeholder='%s']", inputName)));
         sendKeys(input, text);
     }

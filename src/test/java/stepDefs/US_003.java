@@ -8,7 +8,7 @@ public class US_003 {
     ContentPage contentPage = new ContentPage();
 
     @When("I add Document in Document Types")
-    public void iAddDocumentInDocumentTypes() throws InterruptedException {
+    public void iAddDocumentInDocumentTypes() {
         contentPage.sort();contentPage.sort();
         contentPage.add();
         contentPage.fillDialogField("Name", "Alihan");
@@ -19,9 +19,13 @@ public class US_003 {
 
     @When("I update Document in Document Types")
     public void iUpdateDocumentInDocumentTypes() {
+        contentPage.edit();
+        contentPage.fillDialogField("Description", "Some updated description about Alihan");
+        contentPage.saveAndConfirm();
     }
 
     @When("I delete Document in Document Types")
     public void iDeleteDocumentInDocumentTypes() {
+        contentPage.deleteAndConfirm();
     }
 }

@@ -12,8 +12,8 @@ Feature: Management of Document Types
     When I add Document in Document Types
     Then I should see "Document successfully created" message
 
-#    When I update Document in Document Types
-#    Then I should see "Document successfully updated" message
-#
-#    When I delete Document in Document Types
-#    Then I should see "Document successfully deleted" message
+    When I update Document in Document Types
+    Then I should see "Document successfully updated" message
+
+    When I delete Document in Document Types
+    Then I should see "Document successfully deleted" message
