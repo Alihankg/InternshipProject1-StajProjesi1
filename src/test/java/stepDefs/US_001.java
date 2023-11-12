@@ -1,45 +1,48 @@
 package stepDefs;
-
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.DefaultPage;
+import managers.PageObjectManager;
+import pages.ContentPage;
 import pages.NavbarPage;
-
 public class US_001 {
 
-    DefaultPage lp=new DefaultPage();
-    NavbarPage np=new NavbarPage();
+    NavbarPage navbarPage;
+    ContentPage contentPage;
+    private static final PageObjectManager pom = new PageObjectManager();
 
-    @And("Navigate to Position Categories")
-    public void createCategori(){
-        np.click(np.humanResources);
-        np.click(np.hrSetup);
-        np.wait.until(ExpectedConditions.elementToBeClickable(np.positionCategories));
-        np.click(np.positionCategories);
+    public US_001() {
+        navbarPage = pom.getNavbarPage();
+        contentPage = pom.getContentPage();
     }
 
-    @When("Create a New Position Category")
-    public void addPosiCategory(){
-        lp.click(lp.addButton);
-        lp.sendKeys(lp.nameInput, "Evulation");
-        lp.click(lp.saveButton);
+    @And("I've navigated to Position Categories")
+    public void iVeNavigatedToPositionCategories() {
+        navbarPage.navigateToPage("Position Categories");
     }
 
-    @Then ("^Success message should be displayed$")
-    public void succesMessage(){
-        lp.assertTextPresent(lp.successMessage,"successfully");
+    @When("I add Position Category in Position Categories")
+    public void iAddPositionCategoryInPositionCategories(){
+        contentPage.add();
+        contentPage.fillInput("Name", "Position Category");
+        contentPage.saveAndConfirm();
     }
 
-    @When("User delete the {string}")
-    public void userDeleteThe(String name) {
-        lp.click(lp.searchBtn);
-        lp.sendKeys(lp.searchBtn,"Evulation");
-        lp.click(lp.searchPicBtn);
-        lp.wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//fuse-progress-bar/*"),0));
-        lp.click(lp.deletePicBtn);
-        lp.click(lp.deleteBtn);
+    @When("I update Position Category in Position Categories")
+    public void iUpdatePositionCategoryInPositionCategories() {
+        contentPage.edit();
+        contentPage.fillInput("Name", "Position Category 2");
+        contentPage.saveAndConfirm();
     }
+
+    @When("I delete Position Category in Position Categories")
+    public void iDeletePositionCategoryInPositionCategories() {
+        contentPage.deleteAndConfirm();
+    }
+
+    @Then("I should see {string} message")
+    public void iShouldSeeASuccessMessage(String message){
+        contentPage.assertMessageDisplayedAndClose(message);
+    }
+
 }

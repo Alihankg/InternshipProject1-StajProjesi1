@@ -12,7 +12,8 @@ public class US_000 {
     LoginPage loginPage;
 
     public US_000() {
-        loginPage = PageObjectManager.getLoginPage();
+        PageObjectManager pom = new PageObjectManager();
+        loginPage = pom.getLoginPage();
     }
 
     @Given("I am on the login page")
@@ -45,4 +46,5 @@ public class US_000 {
         iClickTheLoginButton();
         iShouldBeLoggedInSuccessfully();
     }
+
 }

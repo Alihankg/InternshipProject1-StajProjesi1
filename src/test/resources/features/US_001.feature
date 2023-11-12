@@ -1,17 +1,19 @@
-Feature: Position Categories Management
+Feature: Management of Pages in navbar
   As an admin,
-  I would like to add, edit and delete the Position Categories under Human Resources Setings,
-  so that, thanks to the Position Categories Management, we can configure the human resources details more efficiently for the school management.
+  I would like to add, edit and delete the items in each page
+  so that, we can configure each page's details more efficiently for the school management.
 
   Background:
     Given I am logged in as an admin in the dashboard
+    And I've navigated to Position Categories
 
-  Scenario: Login with valid username and password
+  Scenario: Manage an item in Position Category
 
-    And Navigate to Position Categories
+    When I add Position Category in Position Categories
+    Then I should see "Position Category successfully created" message
 
-    When Create a New Position Category
-    Then Success message should be displayed
+    When I update Position Category in Position Categories
+    Then I should see "Position Category successfully updated" message
 
-    When User delete the "name"
-    Then Success message should be displayed
+    When I delete Position Category in Position Categories
+    Then I should see "Position Category successfully deleted" message

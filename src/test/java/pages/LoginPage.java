@@ -3,6 +3,7 @@ package pages;
 import dataProvider.ConfigFileReader;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import static helpers.selenium.SeleniumHelper.*;
 
 public class LoginPage extends PageObject {
 
