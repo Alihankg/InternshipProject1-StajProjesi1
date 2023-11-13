@@ -5,17 +5,11 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import managers.PageObjectManager;
 import pages.LoginPage;
 
 public class US_000 {
-    LoginPage loginPage;
 
-    public US_000() {
-        PageObjectManager pom = new PageObjectManager();
-        loginPage = pom.getLoginPage();
-    }
-
+    LoginPage loginPage = new LoginPage();
     @Given("I am on the login page")
     public void iAmOnTheLoginPage() {
         loginPage.navigateToLoginPage();

@@ -1,3 +1,4 @@
+@SmokeTest
 Feature: Management of Attestations
   As an admin,
   I would like to add, edit and delete the items in Attestations page

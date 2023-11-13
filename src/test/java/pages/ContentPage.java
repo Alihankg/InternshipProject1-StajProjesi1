@@ -25,7 +25,7 @@ public class ContentPage extends PageObject{
     @FindBy(xpath = "//ms-delete-button//button")
     public WebElement delete;
 
-    @FindBy(xpath = "//ms-save-button//span[text()='Save & Close']/ancestor::button")
+    @FindBy(xpath = "//ms-save-button[last()]//button")
     public WebElement saveButton;
 
     @FindBy(xpath = "//ms-search-button//button")
@@ -94,15 +94,17 @@ public class ContentPage extends PageObject{
                 }
             }
         }
+        if(selectName.equals("Stage"))
+            escape();
     }
 
     public void fillDialogInput(String fieldName, String text){
         //mat-label[text()='Description']/ancestor::span/preceding-sibling::*
         //ms-dialog-content//textarea[@formcontrolname='%s']
         waitUntilDialogDisplayed();
-        if (fieldName.equals("Name"))
+        if (fieldName.equals("Name")||fieldName.equals("Description"))
             previousText = text;
-        WebElement element = driver.findElement(By.xpath("//ms-dialog-content//input[@data-placeholder='%s']"));
+        WebElement element = driver.findElement(By.xpath("//ms-dialog-content//input[@data-placeholder='%s']".formatted(fieldName)));
         sendKeys(element, text);
     }
 

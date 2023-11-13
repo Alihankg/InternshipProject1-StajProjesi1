@@ -16,7 +16,7 @@ public class LoginPage extends PageObject {
     @FindBy(css="button[aria-label='LOGIN']")
     public WebElement loginButton;
 
-    @FindBy(css="span[_ngcontent-ng-c1814038856]")
+    @FindBy(xpath="//span[text()=' Dashboard ']")
     public WebElement dashboardText;
 
     public void navigateToLoginPage(){

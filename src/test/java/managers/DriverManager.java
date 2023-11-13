@@ -12,7 +12,7 @@ public class DriverManager {
     private static final ThreadLocal<WebDriver> threadDriver=new ThreadLocal<>();
     private static final ThreadLocal<String> threadBrowser = new ThreadLocal<>();
 
-    static {
+    public DriverManager() {
         threadBrowser.set(ConfigFileReader.getDefaultBrowser());
     }
 
@@ -57,6 +57,7 @@ public class DriverManager {
             threadDriver.get().manage().deleteAllCookies();
         }
     }
+
 
     public static void quitDriver() {
         if (threadDriver.get()!=null) {

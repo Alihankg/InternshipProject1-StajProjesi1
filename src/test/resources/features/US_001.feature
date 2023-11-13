@@ -1,3 +1,4 @@
+@SmokeTest
 Feature: Management of Position Categories
   As an admin,
   I would like to add, edit and delete the items in Position Categories page

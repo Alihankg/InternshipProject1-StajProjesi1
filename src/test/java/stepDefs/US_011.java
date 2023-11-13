@@ -7,6 +7,7 @@ public class US_011 {
     ContentPage contentPage = new ContentPage();
     @When("I add Discount in Discounts")
     public void iAddDiscountInDiscounts() {
+        contentPage.sort();contentPage.sort();
         contentPage.add();
         contentPage.fillDialogInput("Description", "Alihan Description");
         contentPage.fillDialogInput("Priority", "1");

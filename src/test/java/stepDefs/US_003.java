@@ -10,7 +10,6 @@ import pages.ContentPage;
 public class US_003 {
 
     ContentPage contentPage = new ContentPage();
-
     // Special case: enter the description
     private void fillDescription(String description){
         WebElement element = DriverManager.getDefaultDriver().findElement(By.xpath("//mat-label[text()='Description']/ancestor::span/preceding-sibling::*"));
@@ -30,7 +29,6 @@ public class US_003 {
     @When("I update Document in Document Types")
     public void iUpdateDocumentInDocumentTypes() {
         contentPage.edit();
-        contentPage.fillDialogInput("Description", "Some updated description about Alihan");
         fillDescription("Some updated description about Alihan");
         contentPage.saveAndConfirm();
     }
