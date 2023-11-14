@@ -15,4 +15,12 @@ public class StringHelper {
         }
         return builder.toString();
     }
+
+    public static String singularize(String text){
+        if (text.endsWith("ies"))
+            return text.substring(0, text.length()-3).concat("y");
+        else if (text.endsWith("s"))
+            return text.substring(0, text.length()-1);
+        return text;
+    }
 }
