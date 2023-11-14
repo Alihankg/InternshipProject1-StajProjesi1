@@ -29,9 +29,6 @@ public class ContentPage extends PageObject {
     @FindBy(xpath = "//ms-save-button[last()]//button")
     public WebElement saveButton;
 
-    @FindBy(xpath = "//ms-search-button//button")
-    public WebElement searchButton;
-
     @FindBy(xpath = "//span[text()=' Delete ']/parent::button")
     public WebElement confirmDelete;
 
@@ -75,7 +72,6 @@ public class ContentPage extends PageObject {
 
     // ---- Form ----
     public void fillDialogField(String fieldName, String value) {
-        waitUntilDialogDisplayed();
         FieldType fieldType = getFieldTypeOf(fieldName);
         String xpath = fieldType.xpath.formatted(fieldName);
         if (fieldType == FieldType.TEXTAREA)

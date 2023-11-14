@@ -14,7 +14,7 @@ public class US_013 {
     ContentPage contentPage = new ContentPage();
     NavbarPage navbarPage = new NavbarPage();
 
-    // In the future, we might need to change the return type to a List because there may be some dependencies
+    // In the future, we might need to change the return type to a LinkedHashMap because there may be some dependencies
     private Map<String, String> parseFieldsTable(String fieldsTable){
         Map<String, String> fieldValues = new HashMap<>();
 
@@ -34,6 +34,7 @@ public class US_013 {
 
     private void fillFieldsAndSave(String fieldsTable){
         Map<String, String> fieldValues = parseFieldsTable(fieldsTable);
+        contentPage.waitUntilDialogDisplayed();
         for(Map.Entry<String, String> kv : fieldValues.entrySet()){
             contentPage.fillDialogField(kv.getKey(), kv.getValue());
         }
