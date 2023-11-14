@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import static helpers.selenium.SeleniumHelper.*;
 
@@ -29,9 +28,6 @@ public class ContentPage extends PageObject {
 
     @FindBy(xpath = "//ms-save-button[last()]//button")
     public WebElement saveButton;
-
-    @FindBy(xpath = "//ms-search-button//button")
-    public WebElement searchButton;
 
     @FindBy(xpath = "//span[text()=' Delete ']/parent::button")
     public WebElement confirmDelete;
@@ -76,7 +72,6 @@ public class ContentPage extends PageObject {
 
     // ---- Form ----
     public void fillDialogField(String fieldName, String value) {
-        waitUntilDialogDisplayed();
         FieldType fieldType = getFieldTypeOf(fieldName);
         String xpath = fieldType.xpath.formatted(fieldName);
         if (fieldType == FieldType.TEXTAREA)
@@ -139,65 +134,5 @@ public class ContentPage extends PageObject {
     public void assertMessageContainsAndClose(String text) {
         assertContainsText(toastMessage, text);
         click(toastClose);
-    }
-
-    // ---- Deprecated Methods ----
-
-    // Form Methods
-    @Deprecated
-    public void select(String selectName, String selected) {
-        WebElement select = driver.findElement(By.xpath("//ms-dialog-content//span[text()='%s']/ancestor::*/preceding-sibling::mat-select".formatted(selectName)));
-        click(select);
-        matchAndClickOption(selected);
-    }
-
-    @Deprecated
-    public void fillDialogInput(String fieldName, String text) {
-        //mat-label[text()='Description']/ancestor::span/preceding-sibling::*
-        //ms-dialog-content//textarea[@formcontrolname='%s']
-        waitUntilDialogDisplayed();
-        if (fieldName.equals("Name") || fieldName.equals("Description"))
-            previousText = text;
-        WebElement element = driver.findElement(By.xpath("//ms-dialog-content//input[@data-placeholder='%s']".formatted(fieldName)));
-        sendKeys(element, text);
-    }
-
-    // If there are more value parameters, it means it's a checkbox
-    @Deprecated
-    public void fillDialogField(String fieldName, String... selected) {
-        WebElement select = driver.findElement(By.xpath("//ms-dialog-content//span[text()='%s']/ancestor::mat-select".formatted(fieldName)));
-        select.click();
-        for (String s : selected) {
-            matchAndClickOption(s);
-        }
-        escape();
-    }
-
-    // Search
-    @Deprecated
-    public void searchWith(Map<String, String> inputs) {
-        for (Map.Entry<String, String> input : inputs.entrySet()) {
-            fillSearchInput(input.getKey(), input.getValue());
-        }
-        click(searchButton);
-    }
-
-    @Deprecated
-    public void fillSearchInput(String inputName, String text) {
-        WebElement input = driver.findElement(By.xpath(String.format("//ms-browse-search//ms-text-field/input[@data-placeholder='%s']", inputName)));
-        sendKeys(input, text);
-    }
-
-    // Others
-    @Deprecated
-    public void clearBugToastMessages() {
-        List<WebElement> bugToastCloses = driver.findElements(By.xpath("//ms-toaster-message//div[contains(text(), 'Cannot read properties')]" +
-                "/ancestor::div[contains(@class, 'hot-toast-message')]/following-sibling::button"));
-        if (bugToastCloses.isEmpty())
-            return;
-        for (WebElement closeButton : bugToastCloses) {
-            click(closeButton);
-        }
-//        click(content);
     }
 }

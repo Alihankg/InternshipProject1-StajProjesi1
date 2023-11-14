@@ -2,7 +2,7 @@
 Feature: Management of Pages' functionality in the navbar
   As an admin,
   I would like to add, edit and delete the items in each page
-  so that, we can configure Position Categories' details more efficiently for the school management.
+  so that, we can configure each page's details more efficiently for the school management.
 
   Background:
     Given I am logged in as an admin in the dashboard
