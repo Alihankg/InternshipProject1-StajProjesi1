@@ -21,7 +21,7 @@ public class US_003 {
         contentPage.sort();contentPage.sort();
         contentPage.add();
         contentPage.fillDialogInput("Name", "Alihan");
-        contentPage.select("Stage", "Student Registration", "Examination");
+        contentPage.fillDialogField("Stage", "Student Registration", "Examination");
         fillDescription("Some description about Alihan");
         contentPage.saveAndConfirm();
     }

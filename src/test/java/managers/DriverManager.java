@@ -52,16 +52,10 @@ public class DriverManager {
         threadDriver.get().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(ConfigFileReader.getImplicitlyWait()));
     }
 
-    public static void clearCookies() {
-        if (threadDriver.get() != null) {
-            threadDriver.get().manage().deleteAllCookies();
-        }
-    }
-
-
-    public static void quitDriver() {
-        if (threadDriver.get()!=null) {
-            threadDriver.get().quit();
+    public static void quitDriver(){
+        WebDriver driver = threadDriver.get();
+        if (driver != null) {
+            driver.quit();
             threadDriver.remove();
         }
     }

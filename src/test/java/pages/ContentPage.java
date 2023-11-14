@@ -1,15 +1,17 @@
 package pages;
 
-import static helpers.selenium.SeleniumHelper.*;
-
+import enums.FieldType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class ContentPage extends PageObject{
+import static helpers.selenium.SeleniumHelper.*;
+
+public class ContentPage extends PageObject {
 
     private static String previousText;
 
@@ -34,10 +36,10 @@ public class ContentPage extends PageObject{
     @FindBy(xpath = "//span[text()=' Delete ']/parent::button")
     public WebElement confirmDelete;
 
-    @FindBy(xpath = "//ms-toaster-message//mat-panel-description/div")
+    @FindBy(xpath = "//ms-toaster-message//mat-panel-description/div[contains(text(), 'successfully')]")
     public WebElement toastMessage;
 
-    @FindBy(xpath = "//button[contains(@class, 'hot-toast-close-btn')]")
+    @FindBy(xpath = "//div[contains(text(), 'successfully')]/ancestor::div[@class='hot-toast-message']/following-sibling::button")
     public WebElement toastClose;
 
     @FindBy(xpath = "//table//div[text()=' # ']")
@@ -49,86 +51,153 @@ public class ContentPage extends PageObject{
     @FindBy(xpath = "//mat-option/span")
     public List<WebElement> options;
 
-    public void sort(){
+    public void sort() {
         click(sortHashtag);
     }
 
-    // CRAD methods
+    // ---- CRAD methods ----
     public void add() {
         click(add);
     }
 
-    public void edit(){
+    public void edit() {
         click(edit);
     }
 
-    public void deleteAndConfirm(){
+    public void deleteAndConfirm() {
         click(delete);
         click(confirmDelete);
     }
 
-    public void saveAndConfirm(){
+    public void saveAndConfirm() {
         click(saveButton);
         assertContainsText(nameAt1, previousText);
     }
 
-    // Form
-    private WebElement getSelectField(String name){
-        String xpath = null;
-        switch (name){
-            case "Stage" -> xpath = "//ms-dialog-content//span[text()='%s']/ancestor::mat-select".formatted(name);
-            case "Field Type", "Location Type", "Currency", "Next Grade" -> xpath = "//ms-dialog-content//span[text()='%s']/ancestor::*/preceding-sibling::mat-select".formatted(name);
-        }
-        return driver.findElement(By.xpath(xpath));
-    }
-
-    public void select(String selectName, String... selected){
-        WebElement select = getSelectField(selectName);
-        click(select);
-        for (String s: selected){
-            for (WebElement o: options){
-                waitUntilElementIsDisplayedAndClickable(o);
-                if (o.getText().equals(s)) {
-                    click(o);
-                    break;
-                }
+    // ---- Form ----
+    public void fillDialogField(String fieldName, String value) {
+        waitUntilDialogDisplayed();
+        FieldType fieldType = getFieldTypeOf(fieldName);
+        String xpath = fieldType.xpath.formatted(fieldName);
+        if (fieldType == FieldType.TEXTAREA)
+            xpath = fieldType.xpath.formatted(fieldName.substring(0, fieldName.length() - 1));
+        WebElement element = driver.findElement(By.xpath(xpath));
+        switch (getFieldTypeOf(fieldName)) {
+            case TEXTAREA, INPUT -> sendKeys(element, value);
+            case CHECKBOX -> {
+                click(element);
+                if (value.contains("+"))
+                    Arrays.stream(value.split("\\+")).forEach(o -> matchAndClickOption(o.trim()));
+                else
+                    matchAndClickOption(value);
+                escape();
+            }
+            case SELECT -> {
+                click(element);
+                matchAndClickOption(value);
             }
         }
-        if(selectName.equals("Stage"))
-            escape();
+        // To assert the value of the first row of the first column in the table
+        if (fieldName.equals("Name") || fieldName.equals("Description"))
+            previousText = value;
     }
 
-    public void fillDialogInput(String fieldName, String text){
+    // Form Helpers
+    private void matchAndClickOption(String selected) {
+        for (WebElement o : options) {
+            waitUntilElementIsDisplayedAndClickable(o);
+            if (o.getText().equals(selected)) {
+                click(o);
+                break;
+            }
+        }
+    }
+
+    private FieldType getFieldTypeOf(String fieldName) {
+        if (fieldName.contains(":"))
+            return FieldType.TEXTAREA;
+        switch (fieldName) {
+            // Add needed cases as you need
+            case "Field Type", "Location Type", "Currency", "Next Grade" -> {
+                return FieldType.SELECT;
+            }
+            case "Stage" -> {
+                return FieldType.CHECKBOX;
+            }
+            default -> {
+                return FieldType.INPUT;
+            }
+        }
+    } // Change it as needed
+
+    // Wait
+    public void waitUntilDialogDisplayed() {
+        waitUntilElementIsDisplayed(dialog);
+    }
+
+    // Assertions
+    public void assertMessageContainsAndClose(String text) {
+        assertContainsText(toastMessage, text);
+        click(toastClose);
+    }
+
+    // ---- Deprecated Methods ----
+
+    // Form Methods
+    @Deprecated
+    public void select(String selectName, String selected) {
+        WebElement select = driver.findElement(By.xpath("//ms-dialog-content//span[text()='%s']/ancestor::*/preceding-sibling::mat-select".formatted(selectName)));
+        click(select);
+        matchAndClickOption(selected);
+    }
+
+    @Deprecated
+    public void fillDialogInput(String fieldName, String text) {
         //mat-label[text()='Description']/ancestor::span/preceding-sibling::*
         //ms-dialog-content//textarea[@formcontrolname='%s']
         waitUntilDialogDisplayed();
-        if (fieldName.equals("Name")||fieldName.equals("Description"))
+        if (fieldName.equals("Name") || fieldName.equals("Description"))
             previousText = text;
         WebElement element = driver.findElement(By.xpath("//ms-dialog-content//input[@data-placeholder='%s']".formatted(fieldName)));
         sendKeys(element, text);
     }
 
+    // If there are more value parameters, it means it's a checkbox
+    @Deprecated
+    public void fillDialogField(String fieldName, String... selected) {
+        WebElement select = driver.findElement(By.xpath("//ms-dialog-content//span[text()='%s']/ancestor::mat-select".formatted(fieldName)));
+        select.click();
+        for (String s : selected) {
+            matchAndClickOption(s);
+        }
+        escape();
+    }
+
     // Search
-    public void searchWith(Map<String, String> inputs){
-        for (Map.Entry<String, String> input : inputs.entrySet()){
+    @Deprecated
+    public void searchWith(Map<String, String> inputs) {
+        for (Map.Entry<String, String> input : inputs.entrySet()) {
             fillSearchInput(input.getKey(), input.getValue());
         }
         click(searchButton);
     }
 
-    public void fillSearchInput(String inputName, String text){
+    @Deprecated
+    public void fillSearchInput(String inputName, String text) {
         WebElement input = driver.findElement(By.xpath(String.format("//ms-browse-search//ms-text-field/input[@data-placeholder='%s']", inputName)));
         sendKeys(input, text);
     }
 
-    // Wait
-    public void waitUntilDialogDisplayed(){
-        waitUntilElementIsDisplayed(dialog);
-    }
-
-    // Assertions
-    public void assertMessageDisplayedAndClose(String text){
-        assertContainsText(toastMessage, text);
-        click(toastClose);
+    // Others
+    @Deprecated
+    public void clearBugToastMessages() {
+        List<WebElement> bugToastCloses = driver.findElements(By.xpath("//ms-toaster-message//div[contains(text(), 'Cannot read properties')]" +
+                "/ancestor::div[contains(@class, 'hot-toast-message')]/following-sibling::button"));
+        if (bugToastCloses.isEmpty())
+            return;
+        for (WebElement closeButton : bugToastCloses) {
+            click(closeButton);
+        }
+//        click(content);
     }
 }
