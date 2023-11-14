@@ -12,16 +12,26 @@ Feature: Management of Pages' functionality in the navbar
     Given I've navigated to <page>
     When I add a new item with following credentials:
       | <add_fields> |
-    Then There should be (<page> item successfully "created") message
+    Then the result message should contain 'successfully created'
 
     When I update the item with following credentials:
       | <edit_fields> |
-    Then There should be (<page> item successfully "updated") message
+    Then the result message should contain 'successfully updated'
 
     When I delete the item
-    Then There should be (<page> item successfully "deleted") message
+    Then the result message should contain 'successfully deleted'
 
     Examples: Pages and Fields
-      | page                | add_fields            | edit_fields                   |
-      | Position Categories | Name = My PC          | Name = My Updated PC          |
-      | Attestations        | Name = My Attestation | Name = My Updated Attestation |
+      | page                | add_fields                                                                                                | edit_fields                       |
+      | Position Categories | Name = My PC                                                                                              | Name = My Updated PC              |
+      | Attestations        | Name = My Attestation                                                                                     | Name = My Updated Attestation     |
+      | Document Types      | Name = My DT, Stage = Employment + Contract, Description:= My desc                                        | Name = My Updated DT              |
+      | Fields              | Name = My Field, Code = Field Code, Field Type = Logical                                                  | Name = My Updated Field           |
+      | Positions           | Name = My Position, Short Name = My Short Name                                                            | Name = My Updated Name            |
+      | Subject Categories  | Name = My Subject, Code = My Subject Code                                                                 | Name = My Updated Subject         |
+      | Locations           | Name = My Location, Short Name = Short Location, Capacity = 10, Location Type = Laboratory                | Name = My Updated Location        |
+      | Departments         | Name = My Department, Code = Department Code                                                              | Name = My Updated Department      |
+      | Bank Accounts       | Name = My Account, IBAN = My IBAN, Currency = KGS, Integration Code = My Code                             | Name = My Updated Account         |
+      | Grade Levels        | Name = My Level, Short Name = Short Level, Order = 1, Max Application Count = 10, Next Grade = violet _ i | Name = My Updated Level           |
+      | Discounts           | Description = My Discount, Priority = 1, Integration Code = My Code                                       | Description = My Updated Discount |
+      | Nationalities       | Name = My Nationality                                                                                     | Name = My Updated Nationality     |

@@ -1,5 +1,4 @@
 package stepDefs;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.ContentPage;
@@ -9,10 +8,11 @@ public class US_001 {
     NavbarPage navbarPage = new NavbarPage();
     ContentPage contentPage = new ContentPage();
 
-    @And("I've navigated to {string}")
-    public void iVeNavigatedToPage(String page) {
-        navbarPage.navigateToPage(page);
-    }
+    // Commented to work on US_013 step definition
+//    @And("I've navigated to {string}")
+//    public void iVeNavigatedToPage(String page) {
+//        navbarPage.navigateToPage(page);
+//    }
 
     @When("I add Position Category in Position Categories")
     public void iAddPositionCategoryInPositionCategories(){
@@ -35,7 +35,7 @@ public class US_001 {
 
     @Then("I should see {string} message")
     public void iShouldSeeASuccessMessage(String message){
-        contentPage.assertMessageDisplayedAndClose(message);
+        contentPage.assertMessageContainsAndClose(message);
     }
 
 }
